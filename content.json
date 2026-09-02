@@ -257,7 +257,7 @@
       {
         "id": "noi-soi",
         "tab": "Nội soi tiêu hóa",
-        "image": "assets/products/core-forcep.jpg",
+        "image": "assets/products/core-forcep.png",
         "kr": "Endoscopic",
         "title": "NỘI SOI TIÊU HÓA",
         "desc": "Dụng cụ nội soi dùng một lần phục vụ sinh thiết, cắt polyp, cầm máu và cắt tách niêm mạc.",
@@ -266,7 +266,7 @@
             "no": "01",
             "title": "CORE-Forcep",
             "mute": "CORE-",
-            "image": "assets/products/core-forcep.jpg",
+            "image": "assets/products/core-forcep.png",
             "features": [
               {
                 "tag": "Công dụng",
@@ -313,7 +313,7 @@
             "no": "02",
             "title": "CORE-Injector",
             "mute": "CORE-",
-            "image": "assets/products/core-injector.jpg",
+            "image": "assets/products/core-injector.png",
             "features": [
               {
                 "tag": "Công dụng",
@@ -360,7 +360,7 @@
             "no": "03",
             "title": "CORE-Snare",
             "mute": "CORE-",
-            "image": "assets/products/core-snare.jpg",
+            "image": "assets/products/core-snare.png",
             "features": [
               {
                 "tag": "Công dụng",
@@ -407,7 +407,7 @@
             "no": "04",
             "title": "CORE-Clip",
             "mute": "CORE-",
-            "image": "assets/products/core-clip.jpg",
+            "image": "assets/products/core-clip.png",
             "features": [
               {
                 "tag": "Công dụng",
@@ -452,7 +452,7 @@
             "no": "05",
             "title": "CORE-Knife",
             "mute": "CORE-",
-            "image": "assets/products/core-knife.jpg",
+            "image": "assets/products/core-knife.png",
             "features": [
               {
                 "tag": "Công dụng",
@@ -493,7 +493,7 @@
             "no": "06",
             "title": "Hot-Biopsy",
             "mute": "Hot-",
-            "image": "assets/products/hot-biopsy.jpg",
+            "image": "assets/products/hot-biopsy.png",
             "features": [
               {
                 "tag": "Công dụng",
@@ -526,7 +526,7 @@
       {
         "id": "noi-soi-o-bung",
         "tab": "Nội soi ổ bụng",
-        "image": "assets/products/core-trocar.jpg",
+        "image": "assets/products/core-trocar.png",
         "kr": "Laparoscopic",
         "title": "PHẪU THUẬT NỘI SOI Ổ BỤNG",
         "desc": "Trocar, port đa kênh, bộ lọc khói phẫu thuật và dụng cụ hút - đốt dùng một lần.",
@@ -535,7 +535,7 @@
             "no": "01",
             "title": "CORE-Trocar",
             "mute": "CORE-",
-            "image": "assets/products/core-trocar.jpg",
+            "image": "assets/products/core-trocar.png",
             "features": [
               {
                 "tag": "Công dụng",
@@ -588,7 +588,7 @@
             "no": "02",
             "title": "CORE-SPORT",
             "mute": "CORE-",
-            "image": "assets/products/core-sport.jpg",
+            "image": "assets/products/core-sport.png",
             "features": [
               {
                 "tag": "Công dụng",
@@ -628,7 +628,7 @@
             "no": "03",
             "title": "CORE-SMOFIL",
             "mute": "CORE-",
-            "image": "assets/products/core-smofil.jpg",
+            "image": "assets/products/core-smofil.png",
             "features": [
               {
                 "tag": "Công dụng",
@@ -654,7 +654,7 @@
             "no": "04",
             "title": "CORE-SMOFIX",
             "mute": "CORE-",
-            "image": "assets/products/core-smofix.jpg",
+            "image": "assets/products/core-smofix.png",
             "features": [
               {
                 "tag": "CORE-FIX",
@@ -683,7 +683,7 @@
             "no": "05",
             "title": "MULPIX",
             "mute": "",
-            "image": "assets/products/mulpix.jpg",
+            "image": "assets/products/mulpix.png",
             "features": [
               {
                 "tag": "MULPIX",
@@ -725,7 +725,7 @@
             "no": "06",
             "title": "Core-Cervical Balloon",
             "mute": "Core-",
-            "image": "assets/products/cervical-balloon.jpg",
+            "image": "assets/products/cervical-balloon.png",
             "features": [
               {
                 "tag": "Công dụng",
@@ -759,7 +759,7 @@
       {
         "id": "bang-gac",
         "tab": "Băng gạc vết thương",
-        "image": "assets/products/lacudy.jpg",
+        "image": "assets/products/lacudy.png",
         "kr": "Wound Dressing",
         "title": "VẬT LIỆU CHE PHỦ VẾT THƯƠNG",
         "desc": "Gạc cầm máu chitosan, màng che phủ trong suốt và hydrogel cân bằng pH.",
@@ -768,7 +768,7 @@
             "no": "01",
             "title": "HEMOBLOCK",
             "mute": "",
-            "image": "assets/products/hemoblock.jpg",
+            "image": "assets/products/hemoblock.png",
             "features": [
               {
                 "tag": "HEMOBLOCK GAUZE",
@@ -798,7 +798,7 @@
             "no": "02",
             "title": "HYLACELL",
             "mute": "",
-            "image": "assets/products/hylacell.jpg",
+            "image": "assets/products/hylacell.png",
             "features": [
               {
                 "tag": "Công dụng",
@@ -824,7 +824,7 @@
             "no": "03",
             "title": "LACUDY",
             "mute": "",
-            "image": "assets/products/lacudy.jpg",
+            "image": "assets/products/lacudy.png",
             "features": [
               {
                 "tag": "Công dụng",
@@ -994,7 +994,7 @@
       {
         "id": "thu-y",
         "tab": "Thú y",
-        "image": "assets/products/anicudy.jpg",
+        "image": "assets/products/anicudy.png",
         "kr": "Animal",
         "title": "SẢN PHẨM THÚ Y",
         "desc": "Vật liệu che phủ vết thương cho vật nuôi, phát triển từ công nghệ dùng cho người.",
@@ -1003,7 +1003,7 @@
             "no": "01",
             "title": "ANICUDY",
             "mute": "",
-            "image": "assets/products/anicudy.jpg",
+            "image": "assets/products/anicudy.png",
             "features": [
               {
                 "tag": "Công dụng",
