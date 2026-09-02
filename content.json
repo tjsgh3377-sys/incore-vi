@@ -1,0 +1,1298 @@
+{
+  "company": {
+    "nameKr": "INCORE",
+    "nameEn": "INCORE Co., Ltd.",
+    "ceo": "Kim Dong-tak",
+    "since": "2014",
+    "tel": "+82-53-963-3514",
+    "fax": "+82-53-722-2442",
+    "email1": "mktg01@incoremedi.com",
+    "email2": "mktg01@incoremedi.com",
+    "address": "11, Hyeoksin-daero 78-gil, Dong-gu, Daegu, Hàn Quốc",
+    "copyright": "Copyright © 2023 INCORE Co., Ltd. All rights reserved."
+  },
+  "nav": [
+    {
+      "label": "GIỚI THIỆU",
+      "target": "about",
+      "children": [
+        {
+          "label": "Về INCORE",
+          "target": "about"
+        },
+        {
+          "label": "Chứng nhận",
+          "target": "cert"
+        },
+        {
+          "label": "Địa chỉ",
+          "target": "location"
+        }
+      ]
+    },
+    {
+      "label": "SẢN PHẨM",
+      "target": "products"
+    },
+    {
+      "label": "LĨNH VỰC",
+      "target": "business"
+    },
+    {
+      "label": "CÔNG NGHỆ",
+      "target": "technology"
+    },
+    {
+      "label": "TIN TỨC",
+      "target": "community"
+    },
+    {
+      "label": "LIÊN HỆ",
+      "target": "cta"
+    }
+  ],
+  "images": {
+    "logo": "assets/logo.png",
+    "hero": "assets/hero.jpg",
+    "tech": "assets/main/card2.jpg"
+  },
+  "hero": {
+    "badge": "INCORE CO., LTD.",
+    "titleLine1": "Công nghệ lõi đổi mới",
+    "titleLine2": "cho thiết bị y tế",
+    "subtitle": "Innovative Core Technologies Of Medical Devices",
+    "description": "Hướng tới sự hòa hợp lành mạnh giữa khoa học và đời sống,\ndựa trên nền tảng công nghệ y tế sáng tạo.",
+    "primaryCta": "Xem sản phẩm →",
+    "secondaryCta": "Liên hệ →"
+  },
+  "about": {
+    "eyebrow": "ABOUT INCORE",
+    "titleLine1": "Đổi mới trong từng",
+    "titleLine2": "thiết bị y tế",
+    "paragraphs": [
+      "INCORE là nhà sản xuất thiết bị y tế chuyên về dụng cụ nội soi tiêu hóa và phẫu thuật nội soi ổ bụng dùng một lần, thiết bị nội soi thú y cùng các sản phẩm mỹ phẩm da liễu, phục vụ thị trường Hàn Quốc và quốc tế.",
+      "Hành trình của chúng tôi được dẫn dắt bởi hoạt động nghiên cứu và phát triển bền bỉ. Thông qua hợp tác chặt chẽ với các bác sĩ và giáo sư đầu ngành, chúng tôi vận dụng kinh nghiệm lâm sàng thực tế để không chỉ đáp ứng mà còn vượt trên các tiêu chuẩn của ngành.",
+      "Bệnh viện là khách hàng trọng tâm của INCORE. Với mỗi sản phẩm được phát triển và sản xuất, chúng tôi mong muốn mang tới cho bệnh viện phương tiện để chăm sóc và điều trị người bệnh ở mức tốt nhất."
+    ],
+    "ceoLabel": "Tổng giám đốc",
+    "ceoName": "Kim Dong-tak",
+    "strengths": [
+      {
+        "icon": "◆",
+        "en": "R&D CENTER",
+        "kr": "Viện nghiên cứu trực thuộc từ năm 2017"
+      },
+      {
+        "icon": "◆",
+        "en": "KGMP · ISO 13485 · CE",
+        "kr": "Hệ thống chất lượng đạt chuẩn quốc tế"
+      },
+      {
+        "icon": "◆",
+        "en": "GLOBAL NETWORK",
+        "kr": "Xuất khẩu và pháp nhân tại Indonesia"
+      }
+    ],
+    "coreValueEyebrow": "CORE VALUE",
+    "coreValueTitle": "Giá trị cốt lõi của INCORE",
+    "coreValues": [
+      {
+        "icon": "◆",
+        "en": "INNOVATIVE TECHNOLOGY",
+        "kr": "Phát triển công nghệ đổi mới",
+        "desc": "Viện nghiên cứu trực thuộc liên tục phát triển dụng cụ nội soi và vật liệu che phủ vết thương thế hệ mới, hợp tác cùng đội ngũ y bác sĩ lâm sàng."
+      },
+      {
+        "icon": "◆",
+        "en": "SAFETY ASSURANCE",
+        "kr": "Bảo đảm an toàn qua chứng nhận chuẩn hóa",
+        "desc": "Toàn bộ quy trình sản xuất vận hành theo KGMP và ISO 13485, sản phẩm đạt chứng nhận CE và giấy phép sản xuất thiết bị y tế."
+      },
+      {
+        "icon": "◆",
+        "en": "QUALITY OF LIFE",
+        "kr": "Nâng cao chất lượng cuộc sống",
+        "desc": "Từ thiết bị dùng trong bệnh viện đến mỹ phẩm da liễu và sản phẩm thú y, INCORE mở rộng phạm vi chăm sóc sức khỏe cho con người và vật nuôi."
+      }
+    ],
+    "historyEyebrow": "HISTORY",
+    "historyTitle": "Quá trình phát triển",
+    "history": [
+      {
+        "year": "2014",
+        "events": [
+          "04. Được lựa chọn vào chương trình thương mại hóa hạng mục khởi nghiệp",
+          "07. Thành lập Công ty TNHH INCORE",
+          "09. Nhận chứng nhận Doanh nghiệp mạo hiểm"
+        ]
+      },
+      {
+        "year": "2016",
+        "events": [
+          "01. Đạt chứng nhận KGMP thiết bị y tế",
+          "02. Nhận giấy phép sản xuất thiết bị y tế",
+          "02. Ra mắt Core-Forcep, Core-Snare, Core-Injector"
+        ]
+      },
+      {
+        "year": "2017",
+        "events": [
+          "04. Thành lập Viện nghiên cứu trực thuộc",
+          "08. Ra mắt HEMOBLOCK"
+        ]
+      },
+      {
+        "year": "2018",
+        "events": [
+          "06. Ký hợp đồng phân phối độc quyền với B.Braun Korea",
+          "07. Được chỉ định là Doanh nghiệp xuất khẩu tiềm năng",
+          "08. Ra mắt Core-Clip",
+          "11. Ra mắt Core-Knife",
+          "11. Doanh nghiệp chia sẻ thành quả xuất sắc — Bộ Y tế & Phúc lợi"
+        ]
+      },
+      {
+        "year": "2019",
+        "events": [
+          "04. Chuyển trụ sở mới và xây dựng nhà máy",
+          "04. Nhận bằng khen của Bộ trưởng Bộ Khoa học & CNTT",
+          "08. Được chọn là doanh nghiệp Pre-Star của thành phố Daegu",
+          "12. Doanh nghiệp xuất sắc do DGFEZ trao tặng"
+        ]
+      },
+      {
+        "year": "2020",
+        "events": [
+          "05. Ra mắt Core-Medium System (bộ xét nghiệm COVID-19)",
+          "07. Xuất khẩu Core-Medium System sang Nepal qua KOICA",
+          "09. Đạt chứng nhận NHS-UK FDA cho Core-Medium System",
+          "12. Doanh nghiệp xuất sắc do thành phố Daegu trao tặng"
+        ]
+      },
+      {
+        "year": "2021",
+        "events": [
+          "02. Đạt chứng nhận INNO-BIZ"
+        ]
+      },
+      {
+        "year": "2022",
+        "events": [
+          "02. Ký hợp đồng phân phối độc quyền với JW Pharmaceutical",
+          "04. Được chọn vào Kibo Star Valley",
+          "05. Ra mắt HYLACELL",
+          "08. Ra mắt LACUDY"
+        ]
+      },
+      {
+        "year": "2023",
+        "events": [
+          "01. Thành lập INTHERA",
+          "10. Thành lập pháp nhân tại Indonesia"
+        ]
+      }
+    ],
+    "keyProductsEyebrow": "KEY PRODUCTS",
+    "keyProductsTitle": "Sản phẩm chủ lực",
+    "keyProducts": [
+      {
+        "badge": "EN",
+        "en": "ENDOSCOPIC",
+        "kr": "Dụng cụ nội soi tiêu hóa",
+        "features": [
+          "CORE-Forcep — kìm sinh thiết dùng một lần",
+          "CORE-Snare — thòng lọng cắt polyp",
+          "CORE-Clip — clip cầm máu có thể mở lại",
+          "CORE-Knife — dao điện cao tần"
+        ]
+      },
+      {
+        "badge": "LA",
+        "en": "LAPAROSCOPIC",
+        "kr": "Dụng cụ phẫu thuật nội soi ổ bụng",
+        "features": [
+          "CORE-Trocar — trocar không lưỡi, kín khí hai lớp",
+          "CORE-SPORT — port đa kênh có thể xoay",
+          "CORE-SMOFIX — bộ lọc khói phẫu thuật",
+          "MULPIX — hút - tưới - đốt tích hợp"
+        ]
+      },
+      {
+        "badge": "WD",
+        "en": "WOUND DRESSING",
+        "kr": "Vật liệu che phủ vết thương",
+        "features": [
+          "HEMOBLOCK — gạc chitosan cầm máu",
+          "HYLACELL — màng che phủ trong suốt",
+          "LACUDY — hydrogel cân bằng pH",
+          "Thiết bị y tế loại 2 đã được cấp phép"
+        ]
+      },
+      {
+        "badge": "DC",
+        "en": "DERMACOSMETIC",
+        "kr": "Mỹ phẩm da liễu & thú y",
+        "features": [
+          "MIRALET — dòng chăm sóc da từ thực vật",
+          "FEMIOLIN — chăm sóc sức khỏe phụ nữ",
+          "ANICUDY — băng vết thương cho thú cưng",
+          "Nguyên liệu thuần chay, an toàn"
+        ]
+      }
+    ],
+    "aboutCtaTitle": "Bạn cần thêm thông tin về sản phẩm của INCORE?",
+    "aboutCtaSubtitle": "Đội ngũ của chúng tôi sẵn sàng tư vấn thông số kỹ thuật, chứng nhận và điều kiện phân phối."
+  },
+  "products": {
+    "eyebrow": "PRODUCTS",
+    "titleEn": "PRODUCT LINE-UP",
+    "title": "Danh mục sản phẩm",
+    "subtitle": "Thiết bị y tế dùng một lần, vật liệu che phủ vết thương, mỹ phẩm da liễu và sản phẩm thú y.",
+    "moreLabel": "Xem chi tiết →",
+    "featuresLabel": "Đặc điểm",
+    "ctaTitle": "Cần báo giá hoặc catalogue đầy đủ?",
+    "ctaDesc": "Vui lòng liên hệ để nhận thông số kỹ thuật chi tiết và điều kiện hợp tác phân phối.",
+    "ctaBtn": "Liên hệ →",
+    "categories": [
+      {
+        "id": "noi-soi",
+        "tab": "Nội soi tiêu hóa",
+        "image": "assets/products/core-forcep.jpg",
+        "kr": "Endoscopic",
+        "title": "NỘI SOI TIÊU HÓA",
+        "desc": "Dụng cụ nội soi dùng một lần phục vụ sinh thiết, cắt polyp, cầm máu và cắt tách niêm mạc.",
+        "items": [
+          {
+            "no": "01",
+            "title": "CORE-Forcep",
+            "mute": "CORE-",
+            "image": "assets/products/core-forcep.jpg",
+            "features": [
+              {
+                "tag": "Công dụng",
+                "lines": [
+                  "Kìm sinh thiết nội soi dùng một lần, dùng để lấy mẫu mô trong quá trình nội soi.",
+                  "Cấu tạo gồm đầu kìm, dây dẫn và tay cầm; đưa qua kênh làm việc của ống nội soi."
+                ]
+              },
+              {
+                "tag": "Đầu xoay",
+                "lines": [
+                  "Đầu kìm xoay giúp tiếp cận và xử lý dễ dàng các tổn thương ở thành bên."
+                ]
+              },
+              {
+                "tag": "Đa kích cỡ",
+                "lines": [
+                  "Nhiều cỡ cup: 1.7 / 2.0 / 2.3 mm."
+                ]
+              },
+              {
+                "tag": "Lực kẹp",
+                "lines": [
+                  "Lực cắn hiệu quả, giảm mỏi tay cho người thực hiện thủ thuật."
+                ]
+              },
+              {
+                "tag": "Độ sắc",
+                "lines": [
+                  "Công nghệ dập nhiều lớp cho phép lấy được nhiều mô hơn với lực nhỏ hơn."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-FCN17S / 17L — ø1.7 / 1600 · 2300 mm / Oval cup / Coil sheath",
+                  "IC-FCN20S / 20L — ø2.0 / 1600 · 2300 mm / Oval cup / Coil sheath",
+                  "IC-FCN23S / 23L — ø2.3 / 1600 · 2300 mm / Oval cup / Coil sheath"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "02",
+            "title": "CORE-Injector",
+            "mute": "CORE-",
+            "image": "assets/products/core-injector.jpg",
+            "features": [
+              {
+                "tag": "Công dụng",
+                "lines": [
+                  "Kim tiêm nội soi dùng một lần, dùng để bơm thuốc vào niêm mạc hoặc mạch máu nhằm cầm máu hoặc làm xơ mạch trong thủ thuật nội soi."
+                ]
+              },
+              {
+                "tag": "Chống kẹt kim",
+                "lines": [
+                  "Kết cấu lỗ mở có trục giúp kim không bị kẹt khi thao tác."
+                ]
+              },
+              {
+                "tag": "Độ bền",
+                "lines": [
+                  "Kim không bị cong ngay cả khi thao tác lặp lại nhiều lần."
+                ]
+              },
+              {
+                "tag": "Lòng kim 25G mở rộng",
+                "lines": [
+                  "Cần ít lực hơn khi bơm thuốc."
+                ]
+              },
+              {
+                "tag": "Đầu kim sắc",
+                "lines": [
+                  "Kim vát 3 mặt gia công với độ chính xác cao."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-IJ2323 — 0.1t / 4 mm / 23G / 2300 mm",
+                  "IC-IJ2523 — 0.1t / 4 mm / 25G / 2300 mm",
+                  "IC-IJX2323S — sheath loại mềm",
+                  "IC-IJ2523S — sheath loại mềm"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "03",
+            "title": "CORE-Snare",
+            "mute": "CORE-",
+            "image": "assets/products/core-snare.jpg",
+            "features": [
+              {
+                "tag": "Công dụng",
+                "lines": [
+                  "Thòng lọng cắt mô dùng một lần, dùng để loại bỏ polyp và tổ chức mô trong quá trình nội soi."
+                ]
+              },
+              {
+                "tag": "Xoay",
+                "lines": [
+                  "Tỉ lệ phản hồi dây 1:1 cho thao tác tinh tế và chính xác."
+                ]
+              },
+              {
+                "tag": "Chống nảy",
+                "lines": [
+                  "Giảm thiểu hiện tượng nảy khi đưa vào và rút ra."
+                ]
+              },
+              {
+                "tag": "Giảm khó chịu",
+                "lines": [
+                  "Đầu ống được bo tròn (R-processing) giúp đưa vào và rút ra êm ái."
+                ]
+              },
+              {
+                "tag": "Đa kích cỡ",
+                "lines": [
+                  "Nhiều cỡ vòng thòng lọng từ 10 mm đến 30 mm."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-SN0210 / 0215 — Diamond / Cold",
+                  "IC-SN0310 ~ 0330 — Oval / Soft",
+                  "IC-SN0410 ~ 0430 — Oval / Stiff",
+                  "IC-SNR series — cùng thông số, có chức năng xoay"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "04",
+            "title": "CORE-Clip",
+            "mute": "CORE-",
+            "image": "assets/products/core-clip.jpg",
+            "features": [
+              {
+                "tag": "Công dụng",
+                "lines": [
+                  "Clip nội soi dùng một lần, dùng cầm máu ở niêm mạc và dưới niêm mạc, loét chảy máu, polyp, động mạch và túi thừa đại tràng."
+                ]
+              },
+              {
+                "tag": "Thao tác đơn giản",
+                "lines": [
+                  "Cấu trúc liền khối nên không cần tiệt trùng lại."
+                ]
+              },
+              {
+                "tag": "Lực kẹp cải tiến",
+                "lines": [
+                  "Thiết kế clip tối ưu cho áp lực kẹp vượt trội."
+                ]
+              },
+              {
+                "tag": "Xoay",
+                "lines": [
+                  "Chức năng xoay giúp thao tác thuận tiện."
+                ]
+              },
+              {
+                "tag": "Mở lại được",
+                "lines": [
+                  "Có thể mở lại để kẹp chính xác vào vị trí chảy máu."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "JW-ECC23S / M / L / X — 9 / 11 / 13 / 16 mm, O.D 2.2 mm, 2300 mm",
+                  "JW-ECN23S / M / L / X — 9 / 11 / 13 / 16 mm, O.D 2.1 mm, 2300 mm"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "05",
+            "title": "CORE-Knife",
+            "mute": "CORE-",
+            "image": "assets/products/core-knife.jpg",
+            "features": [
+              {
+                "tag": "Công dụng",
+                "lines": [
+                  "Dao điện dùng một lần, sử dụng dòng điện cao tần để rạch mô trong đường tiêu hóa khi thực hiện thủ thuật nội soi."
+                ]
+              },
+              {
+                "tag": "Khả năng cắt",
+                "lines": [
+                  "Lực cắt được tăng cường nhờ áp lực phù hợp."
+                ]
+              },
+              {
+                "tag": "Chống bám dị vật",
+                "lines": [
+                  "Bề mặt dao được xử lý hoàn thiện, hạn chế dị vật bám vào lưỡi dao."
+                ]
+              },
+              {
+                "tag": "Đa dạng đầu dao",
+                "lines": [
+                  "Nhiều loại đầu dao tương đương sản phẩm cao cấp của các hãng khác."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-KNA001 — D type / 2300 mm",
+                  "IC-KNA002 — D type / 1800 mm",
+                  "IC-KNI001 — I type / 2300 mm",
+                  "IC-KNI002 — I type / 1800 mm"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "06",
+            "title": "Hot-Biopsy",
+            "mute": "Hot-",
+            "image": "assets/products/hot-biopsy.jpg",
+            "features": [
+              {
+                "tag": "Công dụng",
+                "lines": [
+                  "Dụng cụ sinh thiết nội soi dùng một lần, tương tự CORE-Forcep nhưng hoạt động kết hợp dòng điện cao tần."
+                ]
+              },
+              {
+                "tag": "Độ sắc",
+                "lines": [
+                  "Cup cải tiến giúp giảm thiểu tổn thương nhiệt và chảy máu tại mô."
+                ]
+              },
+              {
+                "tag": "Khả năng cắt",
+                "lines": [
+                  "Giảm điện trở giúp cải thiện hiệu quả cắt."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-HBA004 — ø2.3 / 2300 mm"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "noi-soi-o-bung",
+        "tab": "Nội soi ổ bụng",
+        "image": "assets/products/core-trocar.jpg",
+        "kr": "Laparoscopic",
+        "title": "PHẪU THUẬT NỘI SOI Ổ BỤNG",
+        "desc": "Trocar, port đa kênh, bộ lọc khói phẫu thuật và dụng cụ hút - đốt dùng một lần.",
+        "items": [
+          {
+            "no": "01",
+            "title": "CORE-Trocar",
+            "mute": "CORE-",
+            "image": "assets/products/core-trocar.jpg",
+            "features": [
+              {
+                "tag": "Công dụng",
+                "lines": [
+                  "Thiết bị y tế vô trùng dùng một lần, gồm cannula tạo đường vào cho dụng cụ phẫu thuật và trocar hỗ trợ đưa ống nội soi vào ổ bụng."
+                ]
+              },
+              {
+                "tag": "Thiết kế công thái học",
+                "lines": [
+                  "Xuyên qua thành bụng với lực nhỏ, tay cầm thoải mái cho phẫu thuật viên."
+                ]
+              },
+              {
+                "tag": "An toàn",
+                "lines": [
+                  "Đầu không lưỡi (bladeless) giúp giảm tổn thương mô."
+                ]
+              },
+              {
+                "tag": "Tách rời cannula",
+                "lines": [
+                  "Dễ dàng loại bỏ tạp chất phát sinh trong quá trình phẫu thuật (loại 8 / 10 / 12 mm)."
+                ]
+              },
+              {
+                "tag": "Kín khí",
+                "lines": [
+                  "Cấu trúc gioăng kép duy trì độ kín khí vượt trội."
+                ]
+              },
+              {
+                "tag": "Bề mặt răng cưa",
+                "lines": [
+                  "Cannula có bề mặt răng cưa, hạn chế tuột ra trong khi mổ."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "2 mm — IC-TC02 (Ø2.3 / 125 mm), IC-TC02S (100 mm)",
+                  "3 mm — IC-TC03 (Ø3.5 / 125 mm), IC-TC03S (100 mm)",
+                  "5 mm — IC-TC05L (Ø5.9 / 140 mm), IC-TC05 (125 mm), IC-TC05S (100 mm)",
+                  "8 / 10 / 12 mm — IC-TC08 (Ø8.0), IC-TC10 (Ø11.7), IC-TC12 (Ø12.8)"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "02",
+            "title": "CORE-SPORT",
+            "mute": "CORE-",
+            "image": "assets/products/core-sport.jpg",
+            "features": [
+              {
+                "tag": "Công dụng",
+                "lines": [
+                  "Thiết bị dùng một lần giúp mở rộng vết rạch trong phẫu thuật nội soi. Port-Assay kết hợp Retractor tạo đường vào cho dụng cụ, Retractor mở rộng đường tiếp cận."
+                ]
+              },
+              {
+                "tag": "Port xoay",
+                "lines": [
+                  "Port có thể xoay, tối đa hóa sự thuận tiện khi kết nối dụng cụ phẫu thuật."
+                ]
+              },
+              {
+                "tag": "Cấu trúc one-touch",
+                "lines": [
+                  "Lắp và tháo nhanh giữa Port-Assay A và Retractor."
+                ]
+              },
+              {
+                "tag": "Kín khí",
+                "lines": [
+                  "Cấu trúc gioăng kép duy trì độ kín khí vượt trội."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-SP01 — 5 mm × 1 + 12 mm × 2, tổng 3 port, cao 84 / 160 mm",
+                  "IC-SP04 — 5 mm × 2 + 12 mm × 2, tổng 4 port, cao 84 / 160 mm",
+                  "IC-SR01 — chỉ Retractor, cao 160 mm"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "03",
+            "title": "CORE-SMOFIL",
+            "mute": "CORE-",
+            "image": "assets/products/core-smofil.jpg",
+            "features": [
+              {
+                "tag": "Công dụng",
+                "lines": [
+                  "Thiết bị vô trùng dùng một lần, hấp thụ khí độc phát sinh trong phẫu thuật nhằm bảo vệ bệnh nhân và nhân viên y tế."
+                ]
+              },
+              {
+                "tag": "Nguyên lý",
+                "lines": [
+                  "Kết nối vào van gắn trên CORE-Trocar, khí độc được hút qua và giữ lại tại bộ lọc."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-SM02"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "04",
+            "title": "CORE-SMOFIX",
+            "mute": "CORE-",
+            "image": "assets/products/core-smofix.jpg",
+            "features": [
+              {
+                "tag": "CORE-FIX",
+                "lines": [
+                  "Dụng cụ che phủ vùng phẫu thuật, bảo vệ khỏi nhiễm bẩn. Sản phẩm dùng một lần, không tiếp xúc trực tiếp với vết thương hay bên trong cơ thể."
+                ]
+              },
+              {
+                "tag": "CORE-SMOFIL",
+                "lines": [
+                  "Dụng cụ hút và loại bỏ khói, giúp quan sát rõ vùng phẫu thuật.",
+                  "Adapter được nối vào van trên trocar; khi có áp lực ổ bụng, khói được hút qua ống vào thân chứa bộ lọc."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-SF01 — IC-FX01 + IC-SM02",
+                  "IC-SF02 — IC-FX02 + IC-SM02",
+                  "IC-SF03 — IC-FX03 + IC-SM02"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "05",
+            "title": "MULPIX",
+            "mute": "",
+            "image": "assets/products/mulpix.jpg",
+            "features": [
+              {
+                "tag": "MULPIX",
+                "lines": [
+                  "Ống catheter không sử dụng năng lượng điện, dùng để hút dịch cơ thể. Có nút hút dịch và nút xả để điều khiển dòng nước rửa từ thiết bị làm sạch."
+                ]
+              },
+              {
+                "tag": "MULPIX E",
+                "lines": [
+                  "Điện cực cầm tay dùng một lần cho thiết bị phẫu thuật điện. Truyền năng lượng cao tần (RF) để sinh nhiệt tại điện cực, phục vụ cắt mô, đông máu và cầm máu; đồng thời hút hoặc xả dịch qua thân ống để làm sạch vùng mổ."
+                ]
+              },
+              {
+                "tag": "Tích hợp 3 trong 1",
+                "lines": [
+                  "Cắt - hút - đông máu trong một dụng cụ duy nhất."
+                ]
+              },
+              {
+                "tag": "Tùy chọn",
+                "lines": [
+                  "Kiểu tay cầm: Gun / Trumpet",
+                  "Đầu điện cực: Hook / Spatula / Right Angle / Curved Dissector",
+                  "Chiều dài thân: 440 / 340 / 290 mm"
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-MEG series — tay cầm Gun, có điện cực",
+                  "IC-MET series — tay cầm Trumpet, có điện cực",
+                  "IC-MG / IC-MT series — không điện cực"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "06",
+            "title": "Core-Cervical Balloon",
+            "mute": "Core-",
+            "image": "assets/products/cervical-balloon.jpg",
+            "features": [
+              {
+                "tag": "Công dụng",
+                "lines": [
+                  "Bóng chèn cầm máu cổ tử cung, kiểm soát chảy máu nhanh chóng và đơn giản."
+                ]
+              },
+              {
+                "tag": "Vật liệu an toàn",
+                "lines": [
+                  "Làm từ silicone, loại bỏ nguy cơ dị ứng latex."
+                ]
+              },
+              {
+                "tag": "Ít xâm lấn",
+                "lines": [
+                  "Thủ thuật an toàn, không xâm lấn."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-WB02 — có sheath kèm theo",
+                  "IC-WB04 — không có sheath"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "bang-gac",
+        "tab": "Băng gạc vết thương",
+        "image": "assets/products/lacudy.jpg",
+        "kr": "Wound Dressing",
+        "title": "VẬT LIỆU CHE PHỦ VẾT THƯƠNG",
+        "desc": "Gạc cầm máu chitosan, màng che phủ trong suốt và hydrogel cân bằng pH.",
+        "items": [
+          {
+            "no": "01",
+            "title": "HEMOBLOCK",
+            "mute": "",
+            "image": "assets/products/hemoblock.jpg",
+            "features": [
+              {
+                "tag": "HEMOBLOCK GAUZE",
+                "lines": [
+                  "Gạc chitosan tạo màng bảo vệ trên vết thương và thúc đẩy đông máu để cầm máu.",
+                  "Thấm hút máu giúp giữ trường quan sát rõ và ngăn ngừa nhiễm khuẩn khi dùng trong phẫu thuật nội soi."
+                ]
+              },
+              {
+                "tag": "HEMOBLOCK TAMPON",
+                "lines": [
+                  "Thiết kế cho các vị trí cong hoặc khó che phủ bằng gạc thông thường.",
+                  "Dùng trong thủ thuật khoét chóp cổ tử cung tại khoa sản và trong phẫu thuật hậu môn - trực tràng."
+                ]
+              },
+              {
+                "tag": "Kích cỡ",
+                "lines": [
+                  "Gauze — 7.5 × 5, 10 × 10, 7.5 × 20, 7.5 × 100, 7.5 × 200, 7.5 × 300 cm",
+                  "Tampon tròn — Ø3.0 cm (IC-HBC001)",
+                  "Tampon hình nón — Ø2.7 ~ 3.3 cm (IC-HBC002)"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "02",
+            "title": "HYLACELL",
+            "mute": "",
+            "image": "assets/products/hylacell.jpg",
+            "features": [
+              {
+                "tag": "Công dụng",
+                "lines": [
+                  "Màng che phủ vết thương trong suốt, có tính kết dính, dùng cho da và niêm mạc."
+                ]
+              },
+              {
+                "tag": "Thành phần",
+                "lines": [
+                  "Sử dụng hyaluronic acid độ tinh khiết cao làm nguyên liệu nền."
+                ]
+              },
+              {
+                "tag": "Hiệu quả",
+                "lines": [
+                  "Duy trì môi trường ẩm cho vết thương, hỗ trợ tái tạo mô và bảo vệ khỏi tác nhân bên ngoài."
+                ]
+              }
+            ]
+          },
+          {
+            "no": "03",
+            "title": "LACUDY",
+            "mute": "",
+            "image": "assets/products/lacudy.jpg",
+            "features": [
+              {
+                "tag": "Công dụng",
+                "lines": [
+                  "Băng che phủ vết thương dạng gel trong suốt, có thể dùng trên da và niêm mạc (bao gồm vùng âm hộ)."
+                ]
+              },
+              {
+                "tag": "Cân bằng pH",
+                "lines": [
+                  "Độ pH hơi acid tương đồng với vùng âm hộ, giúp cân bằng pH niêm mạc và tạo môi trường thuận lợi cho lợi khuẩn Lactobacillus."
+                ]
+              },
+              {
+                "tag": "Giảm viêm & tái tạo",
+                "lines": [
+                  "Thành phần hyaluronic acid và alginate hỗ trợ làm lành vết thương trên da và niêm mạc.",
+                  "Tạo màng thẩm thấu giúp hút dịch tiết, giảm viêm và cấp ẩm đồng thời."
+                ]
+              },
+              {
+                "tag": "Hydrogel độ nhớt cao",
+                "lines": [
+                  "Độ nhớt 20.000 cP nên không bị chảy, dễ sử dụng.",
+                  "Kết cấu không dính rít, hạn chế cảm giác khó chịu."
+                ]
+              },
+              {
+                "tag": "Thiết bị y tế",
+                "lines": [
+                  "Không phải mỹ phẩm — là thiết bị y tế vô trùng loại 2 được cấp phép về an toàn và hiệu quả.",
+                  "Không thêm chất bảo quản."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "my-pham",
+        "tab": "Mỹ phẩm da liễu",
+        "image": "assets/products/double-mist.png",
+        "kr": "Dermacosmetic",
+        "title": "MỸ PHẨM DA LIỄU",
+        "desc": "Dòng MIRALET và FEMIOLIN — chăm sóc da từ nguyên liệu thực vật, phát triển trên nền tảng thiết bị y tế.",
+        "items": [
+          {
+            "no": "01",
+            "title": "Miralet Phyto Intensive Skinbooster",
+            "mute": "Miralet",
+            "image": "assets/products/skinbooster.png",
+            "features": [
+              {
+                "tag": "Cấp ẩm đa tầng",
+                "lines": [
+                  "Cấp ẩm từ bề mặt đến các lớp sâu bên trong da."
+                ]
+              },
+              {
+                "tag": "Hàng rào bảo vệ",
+                "lines": [
+                  "Củng cố hàng rào bảo vệ da."
+                ]
+              },
+              {
+                "tag": "Độ đàn hồi",
+                "lines": [
+                  "Cải thiện độ đàn hồi và làm mịn bề mặt da."
+                ]
+              }
+            ]
+          },
+          {
+            "no": "02",
+            "title": "Miralet Phyto Intensive Ampoule",
+            "mute": "Miralet",
+            "image": "assets/products/ampoule.png",
+            "features": [
+              {
+                "tag": "PDRN thực vật",
+                "lines": [
+                  "Cấp ẩm đa tầng từ bề mặt tới lớp sâu, cải thiện độ đàn hồi và củng cố hàng rào da."
+                ]
+              },
+              {
+                "tag": "3 loại exosome thực vật",
+                "lines": [
+                  "Tăng khả năng hấp thu, chiết xuất từ nguồn thực vật tự nhiên."
+                ]
+              },
+              {
+                "tag": "3 loại hyaluronic acid",
+                "lines": [
+                  "Nguyên liệu thực vật an toàn và thân thiện môi trường.",
+                  "Hỗ trợ phục hồi và tái tạo da, mang lại làn da mịn màng và hiệu quả chống lão hóa."
+                ]
+              },
+              {
+                "tag": "Lưu ý sử dụng",
+                "lines": [
+                  "Không chứa chất bảo quản — sử dụng trong vòng 7 ngày sau khi mở."
+                ]
+              }
+            ]
+          },
+          {
+            "no": "03",
+            "title": "Miralet Phyto Double Mist",
+            "mute": "Miralet",
+            "image": "assets/products/double-mist.png",
+            "features": [
+              {
+                "tag": "Lớp phủ pH kép",
+                "lines": [
+                  "Tạo môi trường da acid pH 5.5 giúp hạn chế vi sinh vật gây viêm da cơ địa và mụn.",
+                  "Tạo màng hydrogel pH 4.7 kích thích môi trường tái tạo da.",
+                  "Lớp phủ kép: hàng rào da pH 4.7 và lớp trong pH 5.5."
+                ]
+              },
+              {
+                "tag": "Vegan Exosome",
+                "lines": [
+                  "Ít độc tế bào hơn so với exosome nguồn gốc động vật.",
+                  "Độ ổn định cao, ứng dụng được cho nhiều dạng bào chế.",
+                  "Kích thước khoảng 130 nm — thẩm thấu sâu và nhanh."
+                ]
+              },
+              {
+                "tag": "Cách dùng",
+                "lines": [
+                  "Buổi tối sau khi rửa mặt, xịt Double Mist để chuẩn bị nền da.",
+                  "Thoa đều Intensive Ampoule lên mặt (khuyến nghị 0.7 ~ 1.0 ml mỗi lần).",
+                  "Xịt thêm Double Mist trong quá trình sử dụng để bổ sung độ ẩm.",
+                  "Sáng hôm sau rửa mặt nhẹ với nước."
+                ]
+              }
+            ]
+          },
+          {
+            "no": "04",
+            "title": "FEMIOLIN",
+            "mute": "",
+            "image": "assets/products/femiolin.png",
+            "features": [
+              {
+                "tag": "Chăm sóc sức khỏe phụ nữ",
+                "lines": [
+                  "Được phát triển dựa trên LACUDY — thiết bị y tế loại 2 được bác sĩ sản phụ khoa chỉ định."
+                ]
+              },
+              {
+                "tag": "Nền tảng đã được kiểm chứng",
+                "lines": [
+                  "LACUDY là vật liệu che phủ vết thương giúp giảm viêm và thúc đẩy tái tạo mô, hiện được kê tại các phòng khám da liễu trên toàn Hàn Quốc."
+                ]
+              },
+              {
+                "tag": "Phân loại",
+                "lines": [
+                  "Trên cơ sở hiệu quả và độ an toàn của LACUDY, FEMIOLIN được phát triển thành mỹ phẩm chức năng."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "thu-y",
+        "tab": "Thú y",
+        "image": "assets/products/anicudy.jpg",
+        "kr": "Animal",
+        "title": "SẢN PHẨM THÚ Y",
+        "desc": "Vật liệu che phủ vết thương cho vật nuôi, phát triển từ công nghệ dùng cho người.",
+        "items": [
+          {
+            "no": "01",
+            "title": "ANICUDY",
+            "mute": "",
+            "image": "assets/products/anicudy.jpg",
+            "features": [
+              {
+                "tag": "Công dụng",
+                "lines": [
+                  "Băng che phủ vết thương cao cấp dành cho vật nuôi, sử dụng hyaluronic acid độ tinh khiết cao — nguyên liệu nền của các sản phẩm dùng cho người."
+                ]
+              },
+              {
+                "tag": "Hiệu quả",
+                "lines": [
+                  "Hỗ trợ vùng tổn thương phục hồi nhanh hơn sau phẫu thuật.",
+                  "Thúc đẩy tái tạo với cả vết thương nhỏ và lớn.",
+                  "Bảo vệ vết thương, ngăn ngừa bội nhiễm và biến chứng.",
+                  "Hỗ trợ điều trị bệnh da ở vật nuôi (viêm da cơ địa, viêm da bàn chân, viêm da).",
+                  "Làm dịu và cấp ẩm cho da."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "business": {
+    "eyebrow": "BUSINESS AREA",
+    "title": "Lĩnh vực kinh doanh",
+    "subtitle": "INCORE là nhà sản xuất thiết bị y tế tiên tiến, phục vụ thị trường trong nước và quốc tế.",
+    "exampleLabel": "Ứng dụng",
+    "items": [
+      {
+        "no": "01",
+        "kr": "Thiết bị y tế dùng một lần",
+        "sub": "Medical Device",
+        "desc": "Dụng cụ nội soi tiêu hóa và dụng cụ phẫu thuật nội soi ổ bụng dùng một lần, sản xuất theo hệ thống KGMP và ISO 13485.",
+        "tags": [
+          "Nội soi tiêu hóa",
+          "Nội soi ổ bụng",
+          "Cầm máu",
+          "Sinh thiết"
+        ]
+      },
+      {
+        "no": "02",
+        "kr": "Vật liệu che phủ vết thương",
+        "sub": "Wound Dressing",
+        "desc": "Gạc cầm máu chitosan và hydrogel nền hyaluronic acid dùng cho da và niêm mạc, đã được cấp phép là thiết bị y tế.",
+        "tags": [
+          "HEMOBLOCK",
+          "HYLACELL",
+          "LACUDY"
+        ]
+      },
+      {
+        "no": "03",
+        "kr": "Mỹ phẩm da liễu",
+        "sub": "Dermacosmetic",
+        "desc": "Dòng MIRALET và FEMIOLIN sử dụng exosome và PDRN nguồn gốc thực vật, phát triển từ nền tảng thiết bị y tế.",
+        "tags": [
+          "MIRALET",
+          "FEMIOLIN",
+          "Vegan exosome"
+        ]
+      },
+      {
+        "no": "04",
+        "kr": "Sản phẩm thú y",
+        "sub": "Animal Healthcare",
+        "desc": "Thiết bị nội soi và vật liệu che phủ vết thương dành cho vật nuôi, ứng dụng công nghệ đã kiểm chứng trên người.",
+        "tags": [
+          "ANICUDY",
+          "Nội soi thú y"
+        ]
+      }
+    ]
+  },
+  "technology": {
+    "eyebrow": "TECHNOLOGY",
+    "titleLine1": "Năng lực R&D",
+    "titleLine2": "và hệ thống chất lượng",
+    "description": "Viện nghiên cứu trực thuộc thành lập năm 2017 phối hợp cùng đội ngũ y bác sĩ lâm sàng\nđể phát triển và hoàn thiện sản phẩm theo nhu cầu thực tế tại bệnh viện.",
+    "items": [
+      {
+        "no": "01",
+        "title": "Viện nghiên cứu trực thuộc",
+        "spec": "Từ 2017",
+        "desc": "Đội ngũ R&D nội bộ phụ trách thiết kế, thử nghiệm và cải tiến sản phẩm."
+      },
+      {
+        "no": "02",
+        "title": "Hệ thống chất lượng",
+        "spec": "KGMP · ISO 13485",
+        "desc": "Toàn bộ quy trình sản xuất được vận hành và kiểm soát theo tiêu chuẩn quốc tế."
+      },
+      {
+        "no": "03",
+        "title": "Chứng nhận quốc tế",
+        "spec": "CE Marking",
+        "desc": "Dòng dụng cụ nội soi dùng một lần đạt chứng nhận CE cho thị trường xuất khẩu."
+      },
+      {
+        "no": "04",
+        "title": "Hợp tác lâm sàng",
+        "spec": "Bệnh viện & Giáo sư",
+        "desc": "Phản hồi từ thực tế lâm sàng được đưa trực tiếp vào quá trình phát triển sản phẩm."
+      }
+    ]
+  },
+  "techPage": {
+    "titleEn": "TECHNOLOGY",
+    "subtitle": "Công nghệ & R&D",
+    "sections": [
+      {
+        "no": "01",
+        "titleKr": "Nghiên cứu & Phát triển",
+        "titleEn": "RESEARCH & DEVELOPMENT",
+        "heading": "Viện nghiên cứu trực thuộc, hoạt động liên tục từ năm 2017",
+        "desc": "INCORE thành lập viện nghiên cứu trực thuộc vào năm 2017 và duy trì hoạt động phát triển sản phẩm liên tục. Từ dụng cụ nội soi tiêu hóa cho tới vật liệu che phủ vết thương và mỹ phẩm da liễu, toàn bộ danh mục sản phẩm đều bắt nguồn từ năng lực nghiên cứu nội bộ.",
+        "highlights": [
+          "Thiết kế, chế tạo mẫu và thử nghiệm thực hiện nội bộ",
+          "Hợp tác với bác sĩ và giáo sư đầu ngành trong quá trình phát triển",
+          "Phản hồi lâm sàng được phản ánh trực tiếp vào thiết kế sản phẩm"
+        ]
+      },
+      {
+        "no": "02",
+        "titleKr": "Hệ thống chất lượng",
+        "titleEn": "QUALITY SYSTEM",
+        "heading": "KGMP và ISO 13485 áp dụng cho toàn bộ quy trình sản xuất",
+        "desc": "Nhà máy của INCORE vận hành theo hệ thống quản lý chất lượng thiết bị y tế KGMP và ISO 13485. Từ nguyên vật liệu đầu vào, quá trình gia công, tiệt trùng đến kiểm tra xuất xưởng, mọi công đoạn đều được kiểm soát và lưu hồ sơ.",
+        "highlights": [
+          "Chứng nhận KGMP thiết bị y tế (2016)",
+          "ISO 13485 — dụng cụ nội soi dùng một lần",
+          "Giấy phép sản xuất thiết bị y tế và thiết bị chẩn đoán in vitro"
+        ]
+      },
+      {
+        "no": "03",
+        "titleKr": "Năng lực toàn cầu",
+        "titleEn": "GLOBAL CAPABILITY",
+        "heading": "Chứng nhận CE và mạng lưới xuất khẩu quốc tế",
+        "desc": "Dòng dụng cụ nội soi dùng một lần của INCORE đã đạt chứng nhận CE. Công ty được chỉ định là Doanh nghiệp xuất khẩu tiềm năng, đã xuất khẩu qua các tổ chức quốc tế như KOICA và thành lập pháp nhân tại Indonesia năm 2023.",
+        "highlights": [
+          "CE Certificate — Disposable Endoscopic Instruments",
+          "Xuất khẩu qua tổ chức quốc tế (KOICA, NHS-UK FDA)",
+          "Pháp nhân tại Indonesia (2023)",
+          "Hợp tác phân phối với B.Braun Korea và JW Pharmaceutical"
+        ]
+      }
+    ]
+  },
+  "certifications": {
+    "eyebrow": "CERTIFICATION",
+    "title": "Chứng nhận & Giấy phép",
+    "subtitle": "Hệ thống chất lượng và giấy phép sản xuất của INCORE.",
+    "items": [
+      {
+        "no": "01",
+        "name": "Giấy phép sản xuất thiết bị chẩn đoán in vitro",
+        "desc": "Invitro Diagnostic Medical Device Manufacturing License",
+        "image": "assets/cert/c9.png"
+      },
+      {
+        "no": "02",
+        "name": "Chứng nhận CE",
+        "desc": "CE Certificate — Disposable Endoscopic Instruments",
+        "image": "assets/cert/c1.jpg"
+      },
+      {
+        "no": "03",
+        "name": "ISO 13485",
+        "desc": "ISO 13485 — Disposable Endoscopic Instruments",
+        "image": "assets/cert/c2.jpg"
+      },
+      {
+        "no": "04",
+        "name": "Viện nghiên cứu trực thuộc doanh nghiệp",
+        "desc": "Enterprise Attached Institute",
+        "image": "assets/cert/c3.jpg"
+      },
+      {
+        "no": "05",
+        "name": "Chứng nhận GMP",
+        "desc": "GMP Certificate",
+        "image": "assets/cert/c4.jpg"
+      },
+      {
+        "no": "06",
+        "name": "Giấy phép sản xuất thiết bị y tế",
+        "desc": "Medical Instrument Manufacturer License Rev.01",
+        "image": "assets/cert/c5.jpg"
+      },
+      {
+        "no": "07",
+        "name": "Giấy chứng nhận sản xuất số 16-4179",
+        "desc": "Manufacturer Certificate No.16-4179",
+        "image": "assets/cert/c6.jpg"
+      },
+      {
+        "no": "08",
+        "name": "Giấy chứng nhận sản xuất số 16-4206",
+        "desc": "Manufacturer Certificate No.16-4206",
+        "image": "assets/cert/c7.jpg"
+      },
+      {
+        "no": "09",
+        "name": "Giấy chứng nhận sản xuất số 16-4210",
+        "desc": "Manufacturer Certificate No.16-4210",
+        "image": "assets/cert/c8.jpg"
+      }
+    ]
+  },
+  "location": {
+    "eyebrow": "LOCATION",
+    "title": "Địa chỉ & Chi nhánh",
+    "subtitle": "Trụ sở chính tại Daegu cùng các chi nhánh Daegu và Seoul / Gyeonggi.",
+    "placeName": "INCORE Co., Ltd. — 11, Hyeoksin-daero 78-gil, Dong-gu, Daegu"
+  },
+  "community": {
+    "titleEn": "NEWS",
+    "subtitle": "Tin tức & Hoạt động",
+    "intro": "Các cột mốc và hoạt động nổi bật của INCORE.",
+    "items": [
+      {
+        "year": "2023",
+        "title": "Thành lập pháp nhân tại Indonesia",
+        "desc": "INCORE mở rộng hoạt động ra thị trường Đông Nam Á thông qua việc thành lập pháp nhân địa phương tại Indonesia.",
+        "photo": "assets/main/card1.jpg"
+      },
+      {
+        "year": "2022",
+        "title": "Hợp tác phân phối với JW Pharmaceutical",
+        "desc": "Ký hợp đồng phân phối độc quyền, đồng thời ra mắt hai dòng sản phẩm mới HYLACELL và LACUDY.",
+        "photo": "assets/main/card2.jpg"
+      },
+      {
+        "year": "2020",
+        "title": "Xuất khẩu Core-Medium System",
+        "desc": "Bộ xét nghiệm COVID-19 được xuất khẩu sang Nepal thông qua KOICA và đạt chứng nhận NHS-UK FDA.",
+        "photo": "assets/main/card3.jpg"
+      }
+    ]
+  },
+  "contactPage": {
+    "titleEn": "CONTACT US",
+    "subtitle": "Liên hệ",
+    "formTitle": "Gửi yêu cầu tư vấn",
+    "fields": {
+      "name": {
+        "label": "Họ và tên",
+        "placeholder": "Nhập họ và tên"
+      },
+      "company": {
+        "label": "Công ty",
+        "placeholder": "Nhập tên công ty"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "example@company.com"
+      },
+      "phone": {
+        "label": "Điện thoại",
+        "placeholder": "Nhập số điện thoại"
+      },
+      "message": {
+        "label": "Nội dung",
+        "placeholder": "Vui lòng mô tả sản phẩm hoặc nội dung cần tư vấn."
+      }
+    },
+    "privacy": "Tôi đồng ý với việc thu thập và sử dụng thông tin cá nhân",
+    "privacyLink": "Xem chi tiết",
+    "submit": "Gửi liên hệ →",
+    "directTitle": "Liên hệ trực tiếp",
+    "hoursLabel": "Giờ làm việc",
+    "hours": [
+      "Thứ 2 – Thứ 6  09:00 – 18:00 (giờ Hàn Quốc)",
+      "Nghỉ trưa  12:00 – 13:00",
+      "Thứ 7, Chủ nhật và ngày lễ: nghỉ"
+    ]
+  },
+  "cta": {
+    "eyebrow": "CONTACT",
+    "title": "Hợp tác cùng INCORE",
+    "subtitle": "Chúng tôi sẵn sàng trao đổi về thông số kỹ thuật, chứng nhận và điều kiện phân phối.",
+    "primaryCta": "Liên hệ →",
+    "secondaryCta": "Xem sản phẩm →",
+    "tel": "+82-53-963-3514",
+    "email": "mktg01@incoremedi.com"
+  },
+  "footer": {
+    "tagline": "Innovative Core Technologies Of Medical Devices"
+  }
+}

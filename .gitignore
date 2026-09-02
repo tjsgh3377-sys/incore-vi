@@ -1,0 +1,16 @@
+# 로컬 전용 서버 도구 — GitHub Pages에 게시하면 안 됨
+admin.config.json
+serve.ps1
+start-server.bat
+
+# 관리자 화면은 serve.ps1의 로컬 API에 의존하므로 Pages에서는 동작하지 않는다
+admin.html
+admin.js
+
+# 관리자 업로드 파일(로컬 전용)
+uploads/
+
+# OS / 에디터 부산물
+Thumbs.db
+Desktop.ini
+.DS_Store
