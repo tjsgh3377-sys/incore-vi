@@ -257,7 +257,7 @@
       {
         "id": "noi-soi",
         "tab": "Nội soi tiêu hóa",
-        "image": "assets/products/core-forcep.png",
+        "image": "assets/products/thumb/core-forcep.png",
         "kr": "Endoscopic",
         "title": "NỘI SOI TIÊU HÓA",
         "desc": "Dụng cụ nội soi dùng một lần phục vụ sinh thiết, cắt polyp, cầm máu và cắt tách niêm mạc.",
@@ -526,7 +526,7 @@
       {
         "id": "noi-soi-o-bung",
         "tab": "Nội soi ổ bụng",
-        "image": "assets/products/core-trocar.png",
+        "image": "assets/products/thumb/core-trocar.png",
         "kr": "Laparoscopic",
         "title": "PHẪU THUẬT NỘI SOI Ổ BỤNG",
         "desc": "Trocar, port đa kênh, bộ lọc khói phẫu thuật và dụng cụ hút - đốt dùng một lần.",
@@ -759,7 +759,7 @@
       {
         "id": "bang-gac",
         "tab": "Băng gạc vết thương",
-        "image": "assets/products/lacudy.png",
+        "image": "assets/products/thumb/lacudy.png",
         "kr": "Wound Dressing",
         "title": "VẬT LIỆU CHE PHỦ VẾT THƯƠNG",
         "desc": "Gạc cầm máu chitosan, màng che phủ trong suốt và hydrogel cân bằng pH.",
@@ -866,7 +866,7 @@
       {
         "id": "my-pham",
         "tab": "Mỹ phẩm da liễu",
-        "image": "assets/products/double-mist.png",
+        "image": "assets/products/thumb/double-mist.png",
         "kr": "Dermacosmetic",
         "title": "MỸ PHẨM DA LIỄU",
         "desc": "Dòng MIRALET và FEMIOLIN — chăm sóc da từ nguyên liệu thực vật, phát triển trên nền tảng thiết bị y tế.",
@@ -994,7 +994,7 @@
       {
         "id": "thu-y",
         "tab": "Thú y",
-        "image": "assets/products/anicudy.png",
+        "image": "assets/products/thumb/anicudy.png",
         "kr": "Animal",
         "title": "SẢN PHẨM THÚ Y",
         "desc": "Vật liệu che phủ vết thương cho vật nuôi, phát triển từ công nghệ dùng cho người.",
