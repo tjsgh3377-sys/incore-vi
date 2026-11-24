@@ -34,6 +34,10 @@ python -m http.server 8753
 `admin.html`은 `serve.ps1`이 제공하는 로컬 API(`/api/login`·`/api/content`·`/api/save`·
 `/api/upload`)에 의존합니다. **GitHub Pages에는 백엔드가 없으므로 관리자는 로컬에서만 동작합니다.**
 
+그래서 관리자 파일은 저장소에만 두고 공개 사이트에는 게시하지 않습니다
+(`_config.yml` 의 `exclude` 목록). 반드시 아래 **localhost 주소**로 접속하세요 —
+Pages 주소나 `file://` 로 열면 "서버에 연결할 수 없습니다" 오류가 납니다.
+
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File serve.ps1
 ```
