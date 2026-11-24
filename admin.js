@@ -2,8 +2,8 @@
   "use strict";
 
   var TOKEN_KEY = "jstech_admin_token";
-  var content = null;    // 국문 content.json
-  var contentEn = null;  // 단일 언어(베트남어) 사이트 — 항상 null
+  var content = null;    // 베트남어 content.json
+  var contentEn = null;  // 영문 content_en.json (불러오기 실패 시 null → 영문 칸 숨김)
 
   function $(sel, root) { return (root || document).querySelector(sel); }
   function el(tag, attrs, html) {
@@ -46,15 +46,23 @@
   }
 
   function loadContent() {
-    fetch("/api/content?_=" + Date.now()).then(function (r) { return r.json(); })
-    .then(function (c) {
-      content = c;
-      contentEn = null;
+    var t = Date.now();
+    var vi = fetch("/api/content?_=" + t).then(function (r) { return r.json(); });
+    // 영문은 없거나 서버가 실패해도 베트남어 편집은 계속 가능해야 한다
+    var en = fetch("/api/content?lang=en&_=" + t)
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .catch(function () { return null; });
+
+    Promise.all([vi, en]).then(function (res) {
+      content = res[0];
+      contentEn = res[1];
       buildForm();
-    }).catch(function () { $("#form").innerHTML = "<div class='card'>content.json을 불러오지 못했습니다.</div>"; });
+    }).catch(function () {
+      $("#form").innerHTML = "<div class='card'>content.json을 불러오지 못했습니다.</div>";
+    });
   }
 
-  // 단일 언어 사이트이므로 en 참조는 항상 null → 영문 칸이 렌더되지 않는다
+  // contentEn 이 있으면 영문 칸이 함께 렌더된다 (없으면 베트남어 단일 편집)
   function enObjOf(koRef, enParent, key) {
     if (!enParent) return null;
     if (!enParent[key]) enParent[key] = {};
@@ -179,7 +187,7 @@
       c.appendChild(inp);
       return c;
     }
-    cols.appendChild(mk(koObj, "본문"));
+    cols.appendChild(mk(koObj, "베트남어 (VI)"));
     if (enObj) cols.appendChild(mk(enObj, "영문 (EN)"));
     wrap.appendChild(cols);
     return wrap;
@@ -223,7 +231,7 @@
       c.appendChild(ta);
       return c;
     }
-    cols.appendChild(mk(koObj, "본문"));
+    cols.appendChild(mk(koObj, "베트남어 (VI)"));
     if (enObj) cols.appendChild(mk(enObj, "영문 (EN)"));
     wrap.appendChild(cols);
     wrap.appendChild(el("div", { "class": "hint" }, "단락은 빈 줄(Enter 두 번)로 구분합니다."));
@@ -247,7 +255,7 @@
       c.appendChild(ta);
       return c;
     }
-    cols.appendChild(mk(koObj, "본문"));
+    cols.appendChild(mk(koObj, "베트남어 (VI)"));
     if (enObj) cols.appendChild(mk(enObj, "영문 (EN)"));
     wrap.appendChild(cols);
     return wrap;
@@ -270,7 +278,7 @@
       c.appendChild(inp);
       return c;
     }
-    cols.appendChild(mk(koObj, "본문"));
+    cols.appendChild(mk(koObj, "베트남어 (VI)"));
     if (enObj) cols.appendChild(mk(enObj, "영문 (EN)"));
     wrap.appendChild(cols);
     return wrap;
@@ -362,8 +370,12 @@
     }
 
     host.appendChild(el("div", { "class": "infobar" },
-      "이 화면은 <b>베트남어 사이트 본문</b>을 편집합니다. 입력한 내용이 그대로 사이트에 노출됩니다. " +
-      "저장하면 <b>content.json 과 오프라인 배포본(dist)</b>이 한 번에 반영됩니다."));
+      contentEn
+        ? ("이 화면은 <b>베트남어(VI)와 영문(EN)</b>을 나란히 편집합니다. 입력한 내용이 그대로 사이트에 노출됩니다. " +
+           "저장하면 <b>content.json 과 content_en.json</b>이 한 번에 반영됩니다. " +
+           "이미지·아이콘처럼 언어 공통인 값은 한 칸만 표시되며 양쪽에 함께 저장됩니다.")
+        : ("<b>영문 데이터(content_en.json)를 불러오지 못해 베트남어만 편집합니다.</b> " +
+           "파일이 있는지 확인한 뒤 새로고침하세요.")));
 
     // ===== 홈 · 기본정보 =====
     beginSection("brand", "🏠", "홈 · 기본정보");
@@ -709,20 +721,33 @@
     var msg = $("#saveMsg");
     msg.className = "msg"; msg.textContent = "저장 중...";
     $("#saveBtn").disabled = true;
+
+    function failText(res) {
+      if (res.j && res.j.error === "unauthorized") return "세션이 만료되었습니다. 다시 로그인하세요.";
+      return "저장 실패: " + ((res.j && res.j.error) || "");
+    }
+
+    // 베트남어 → 영문 순으로 저장. 영문이 없으면 베트남어만 저장한다.
     postJson("/api/save", content)
       .then(function (res) {
+        if (!(res.ok && res.j.ok)) throw new Error(failText(res));
+        if (!contentEn) return null;
+        return postJson("/api/save-en", contentEn).then(function (resEn) {
+          if (!(resEn.ok && resEn.j.ok)) throw new Error("영문 " + failText(resEn));
+          return resEn;
+        });
+      })
+      .then(function (resEn) {
         $("#saveBtn").disabled = false;
-        if (res.ok && res.j.ok) {
-          msg.className = "msg ok";
-          msg.textContent = "저장되었습니다. 오프라인 배포본(dist)도 자동 반영됨.";
-        } else if (res.j && res.j.error === "unauthorized") {
-          msg.className = "msg err"; msg.textContent = "세션이 만료되었습니다. 다시 로그인하세요.";
-        } else {
-          msg.className = "msg err"; msg.textContent = "저장 실패: " + (res.j.error || "");
-        }
-      }).catch(function () {
+        msg.className = "msg ok";
+        msg.textContent = resEn
+          ? "저장되었습니다. (content.json + content_en.json)"
+          : "베트남어만 저장되었습니다. (영문 데이터 없음)";
+      })
+      .catch(function (e) {
         $("#saveBtn").disabled = false;
-        msg.className = "msg err"; msg.textContent = "저장 실패 (서버 연결 오류)";
+        msg.className = "msg err";
+        msg.textContent = (e && e.message) ? e.message : "저장 실패 (서버 연결 오류)";
       });
   }
 
