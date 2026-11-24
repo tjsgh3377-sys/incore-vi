@@ -30,25 +30,71 @@
   // 순차 등장용 delay 인덱스
   function rev(i) { return ' class="reveal"' + (i ? ' style="--d:' + (i * 80) + 'ms"' : ""); }
 
-  // ---------- UI 문구 (베트남어 단일 언어) ----------
-  var LANG = "vi";
-  var T = {
-    menuAria: "Menu", mapView: "Xem trên bản đồ",
-    viewProducts: "Xem sản phẩm →", contactUs: "Liên hệ →",
-    imgPreparing: "Hình ảnh đang cập nhật", noNews: "Chưa có tin tức nào.",
-    formNeed: "Vui lòng nhập họ tên, email và nội dung liên hệ.",
-    formAgree: "Vui lòng đồng ý với việc thu thập và sử dụng thông tin cá nhân.",
-    mailSubject: "[Liên hệ từ website] ", mailName: "Họ tên: ", mailCompany: "Công ty: ",
-    mailEmail: "Email: ", mailPhone: "Điện thoại: ", mailBody: "Nội dung:",
-    loadFail: "Không tải được nội dung. Vui lòng chạy site qua serve.ps1."
+  // ---------- 다국어(베트남어/영문) ----------
+  // ?lang=en|vi 쿼리 → localStorage(icLang) → 기본 vi
+  function getLang() {
+    var m = /[?&]lang=(en|vi)/i.exec(window.location.search);
+    var lang = m ? m[1].toLowerCase() : null;
+    try {
+      if (lang) localStorage.setItem("icLang", lang);
+      else lang = localStorage.getItem("icLang");
+    } catch (e) {}
+    return lang === "en" ? "en" : "vi";
+  }
+  var LANG = getLang();
+  // 하드코딩 UI 문구 사전
+  var UI = {
+    vi: {
+      menuAria: "Menu", mapView: "Xem trên bản đồ",
+      viewProducts: "Xem sản phẩm →", contactUs: "Liên hệ →",
+      imgPreparing: "Hình ảnh đang cập nhật", noNews: "Chưa có tin tức nào.",
+      formNeed: "Vui lòng nhập họ tên, email và nội dung liên hệ.",
+      formAgree: "Vui lòng đồng ý với việc thu thập và sử dụng thông tin cá nhân.",
+      mailSubject: "[Liên hệ từ website] ", mailName: "Họ tên: ", mailCompany: "Công ty: ",
+      mailEmail: "Email: ", mailPhone: "Điện thoại: ", mailBody: "Nội dung:",
+      loadFail: "Không tải được nội dung. Vui lòng chạy site qua serve.ps1."
+    },
+    en: {
+      menuAria: "Menu", mapView: "View on Map",
+      viewProducts: "View Products →", contactUs: "Contact Us →",
+      imgPreparing: "Image coming soon", noNews: "No news posted yet.",
+      formNeed: "Please enter your name, email and message.",
+      formAgree: "Please agree to the collection and use of your personal information.",
+      mailSubject: "[Website Inquiry] ", mailName: "Name: ", mailCompany: "Company: ",
+      mailEmail: "Email: ", mailPhone: "Phone: ", mailBody: "Message:",
+      loadFail: "Failed to load content. Please run the site through serve.ps1."
+    }
   };
+  var T = UI[LANG] || UI.vi;
   var TITLES = {
-    home: "Công nghệ lõi đổi mới cho thiết bị y tế", about: "Giới thiệu công ty",
-    cert: "Chứng nhận", location: "Địa chỉ", business: "Lĩnh vực kinh doanh",
-    products: "Sản phẩm", technology: "Công nghệ & R&D", community: "Tin tức",
-    contact: "Liên hệ"
+    vi: {
+      home: "Công nghệ lõi đổi mới cho thiết bị y tế", about: "Giới thiệu công ty",
+      cert: "Chứng nhận", location: "Địa chỉ", business: "Lĩnh vực kinh doanh",
+      products: "Sản phẩm", technology: "Công nghệ & R&D", community: "Tin tức",
+      contact: "Liên hệ"
+    },
+    en: {
+      home: "Innovative Core Technologies of Medical Devices", about: "About INCORE",
+      cert: "Certification", location: "Location", business: "Business Areas",
+      products: "Products", technology: "Technology & R&D", community: "News",
+      contact: "Contact"
+    }
   };
-  function localizeLinks(html) { return html; }
+  // 현재 페이지 파일명 (언어 전환 링크용)
+  function currentPageFile() {
+    var p = (window.location.pathname || "").split("/").pop();
+    return p && p.indexOf(".html") !== -1 ? p : "index.html";
+  }
+  function langHref(lang) {
+    return currentPageFile() + "?lang=" + lang + (window.location.hash || "");
+  }
+  // 영문일 때 내부 .html 링크에 ?lang=en 부여 (이미 쿼리가 있는 링크는 제외)
+  function localizeLinks(html) {
+    if (LANG !== "en") return html;
+    return html.replace(/href="([^"?]+?\.html)(#[^"]*)?"/g, function (m, file, hash) {
+      return 'href="' + file + "?lang=en" + (hash || "") + '"';
+    });
+  }
 
   // nav target -> 서브페이지 파일
   var HREF = {
@@ -70,7 +116,7 @@
   var ABOUT_GROUP = ["about", "cert", "location"];
 
   function loadContent() {
-    var file = "content.json";
+    var file = LANG === "en" ? "content_en.json" : "content.json";
     try {
       var xhr = new XMLHttpRequest();
       xhr.open("GET", file + "?_=" + Date.now(), false);
@@ -107,7 +153,11 @@
         '<a href="index.html" class="gnb__brand"><img class="gnb__logo" data-cpath="images" src="' + esc(c.images.logo) + '" alt="' + esc(c.company.nameKr) + '"></a>' +
         '<nav class="gnb__menu" id="gnbMenu">' + menu + "</nav>" +
         '<div class="gnb__right">' +
-          '<span class="gnb__lang"><a href="index.html" class="is-active">VI</a></span>' +
+          '<span class="gnb__lang">' +
+            '<a href="' + esc(langHref("vi")) + '"' + (LANG !== "en" ? ' class="is-active"' : "") + ">VI</a>" +
+            '<span class="gnb__langsep">|</span>' +
+            '<a href="' + esc(langHref("en")) + '"' + (LANG === "en" ? ' class="is-active"' : "") + ">EN</a>" +
+          "</span>" +
           '<button class="gnb__burger" id="gnbBurger" aria-label="' + esc(T.menuAria) + '">☰</button>' +
         "</div>" +
       "</div></header>";
@@ -818,7 +868,7 @@
   function render(c, page) {
     var html = header(c, page) + body(c, page) + footer(c);
     document.getElementById("app").innerHTML = localizeLinks(html);
-    try { document.documentElement.setAttribute("lang", "vi"); } catch (e) {}
+    try { document.documentElement.setAttribute("lang", LANG); } catch (e) {}
 
     var burger = document.getElementById("gnbBurger");
     var menu = document.getElementById("gnbMenu");
@@ -835,12 +885,41 @@
     setupEditHighlight();
   }
 
+  // 현재 언어의 콘텐츠에서 페이지별 meta description을 만든다 (언어 전환 시 갱신)
+  function pageDescription(c, page) {
+    function first(v) { return Array.isArray(v) ? v[0] : v; }
+    var map = {
+      home: c.hero && c.hero.description,
+      about: c.about && first(c.about.paragraphs),
+      products: c.products && c.products.subtitle,
+      business: c.business && c.business.subtitle,
+      technology: c.technology && c.technology.description,
+      cert: c.certifications && c.certifications.subtitle,
+      location: c.location && c.location.subtitle,
+      community: c.community && c.community.intro,
+      contact: c.cta && c.cta.subtitle
+    };
+    return String(map[page] || map.home || "").replace(/\s+/g, " ").trim();
+  }
+  function setMetaDescription(text) {
+    if (!text) return;
+    var m = document.querySelector('meta[name="description"]');
+    if (!m) {
+      m = document.createElement("meta");
+      m.setAttribute("name", "description");
+      document.head.appendChild(m);
+    }
+    m.setAttribute("content", text);
+  }
+
   var page = document.body.getAttribute("data-page") || "home";
   var content = loadContent();
   if (content) {
     render(content, page);
     var brand = (content.company && content.company.nameKr) ? content.company.nameKr + " | " : "";
-    document.title = brand + (TITLES[page] || TITLES.home);
+    var titles = TITLES[LANG] || TITLES.vi;
+    document.title = brand + (titles[page] || titles.home);
+    setMetaDescription(pageDescription(content, page));
   } else {
     document.getElementById("app").innerHTML =
       '<div style="padding:80px;text-align:center;font-family:sans-serif">' +

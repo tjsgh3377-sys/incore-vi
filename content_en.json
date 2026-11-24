@@ -1,0 +1,1298 @@
+{
+  "company": {
+    "nameKr": "INCORE",
+    "nameEn": "INCORE Co., Ltd.",
+    "ceo": "Kim Dong-tak",
+    "since": "2014",
+    "tel": "+82-53-963-3514",
+    "fax": "+82-53-722-2442",
+    "email1": "mktg01@incoremedi.com",
+    "email2": "mktg01@incoremedi.com",
+    "address": "11, Hyeoksin-daero 78-gil, Dong-gu, Daegu, Republic of Korea",
+    "copyright": "Copyright © 2023 INCORE Co., Ltd. All rights reserved."
+  },
+  "nav": [
+    {
+      "label": "COMPANY",
+      "target": "about",
+      "children": [
+        {
+          "label": "About INCORE",
+          "target": "about"
+        },
+        {
+          "label": "Certification",
+          "target": "cert"
+        },
+        {
+          "label": "Location",
+          "target": "location"
+        }
+      ]
+    },
+    {
+      "label": "PRODUCTS",
+      "target": "products"
+    },
+    {
+      "label": "BUSINESS",
+      "target": "business"
+    },
+    {
+      "label": "TECHNOLOGY",
+      "target": "technology"
+    },
+    {
+      "label": "NEWS",
+      "target": "community"
+    },
+    {
+      "label": "CONTACT",
+      "target": "cta"
+    }
+  ],
+  "images": {
+    "logo": "assets/logo.png",
+    "hero": "assets/hero.jpg",
+    "tech": "assets/main/card2.jpg"
+  },
+  "hero": {
+    "badge": "INCORE CO., LTD.",
+    "titleLine1": "Innovative Core Technologies",
+    "titleLine2": "of Medical Devices",
+    "subtitle": "Innovative Core Technologies Of Medical Devices",
+    "description": "Pursuing a healthy harmony between science and life,\nbuilt on innovative medical technology.",
+    "primaryCta": "View Products →",
+    "secondaryCta": "Contact Us →"
+  },
+  "about": {
+    "eyebrow": "ABOUT INCORE",
+    "titleLine1": "Innovation in every",
+    "titleLine2": "medical device",
+    "paragraphs": [
+      "INCORE is a medical device manufacturer specializing in disposable gastrointestinal endoscopic and laparoscopic instruments, veterinary endoscopic devices and dermacosmetic products, serving both the Korean and international markets.",
+      "Our journey is driven by persistent research and development. Through close collaboration with leading physicians and professors, we apply real clinical experience to not only meet but exceed the standards of the industry.",
+      "Hospitals are at the centre of everything INCORE does. With every product we develop and manufacture, we aim to give hospitals the means to care for and treat their patients at the highest level."
+    ],
+    "ceoLabel": "CEO",
+    "ceoName": "Kim Dong-tak",
+    "strengths": [
+      {
+        "icon": "◆",
+        "en": "R&D CENTER",
+        "kr": "In-house research institute since 2017"
+      },
+      {
+        "icon": "◆",
+        "en": "KGMP · ISO 13485 · CE",
+        "kr": "Quality system compliant with international standards"
+      },
+      {
+        "icon": "◆",
+        "en": "GLOBAL NETWORK",
+        "kr": "Exports and a local subsidiary in Indonesia"
+      }
+    ],
+    "coreValueEyebrow": "CORE VALUE",
+    "coreValueTitle": "The core values of INCORE",
+    "coreValues": [
+      {
+        "icon": "◆",
+        "en": "INNOVATIVE TECHNOLOGY",
+        "kr": "Developing innovative technology",
+        "desc": "Our in-house research institute continuously develops next-generation endoscopic instruments and wound dressing materials in collaboration with clinical medical teams."
+      },
+      {
+        "icon": "◆",
+        "en": "SAFETY ASSURANCE",
+        "kr": "Safety assured through certified standards",
+        "desc": "Every manufacturing process runs under KGMP and ISO 13485, and our products hold CE certification and medical device manufacturing licences."
+      },
+      {
+        "icon": "◆",
+        "en": "QUALITY OF LIFE",
+        "kr": "Raising the quality of life",
+        "desc": "From hospital devices to dermacosmetics and veterinary products, INCORE widens the scope of healthcare for both people and animals."
+      }
+    ],
+    "historyEyebrow": "HISTORY",
+    "historyTitle": "Our milestones",
+    "history": [
+      {
+        "year": "2014",
+        "events": [
+          "04. Selected for the start-up commercialization programme",
+          "07. INCORE Co., Ltd. established",
+          "09. Certified as a Venture Company"
+        ]
+      },
+      {
+        "year": "2016",
+        "events": [
+          "01. Medical device KGMP certification obtained",
+          "02. Medical device manufacturing licence obtained",
+          "02. Core-Forcep, Core-Snare and Core-Injector launched"
+        ]
+      },
+      {
+        "year": "2017",
+        "events": [
+          "04. In-house research institute established",
+          "08. HEMOBLOCK launched"
+        ]
+      },
+      {
+        "year": "2018",
+        "events": [
+          "06. Exclusive distribution agreement with B.Braun Korea",
+          "07. Designated as a Promising Export Company",
+          "08. Core-Clip launched",
+          "11. Core-Knife launched",
+          "11. Outstanding Benefit-Sharing Company — Ministry of Health & Welfare"
+        ]
+      },
+      {
+        "year": "2019",
+        "events": [
+          "04. Relocated to a new head office and built a new plant",
+          "04. Commendation from the Minister of Science and ICT",
+          "08. Selected as a Pre-Star company by Daegu City",
+          "12. Outstanding Company Award from DGFEZ"
+        ]
+      },
+      {
+        "year": "2020",
+        "events": [
+          "05. Core-Medium System launched (COVID-19 test kit)",
+          "07. Core-Medium System exported to Nepal through KOICA",
+          "09. NHS-UK FDA certification obtained for the Core-Medium System",
+          "12. Outstanding Company Award from Daegu City"
+        ]
+      },
+      {
+        "year": "2021",
+        "events": [
+          "02. INNO-BIZ certification obtained"
+        ]
+      },
+      {
+        "year": "2022",
+        "events": [
+          "02. Exclusive distribution agreement with JW Pharmaceutical",
+          "04. Selected for Kibo Star Valley",
+          "05. HYLACELL launched",
+          "08. LACUDY launched"
+        ]
+      },
+      {
+        "year": "2023",
+        "events": [
+          "01. INTHERA established",
+          "10. Local subsidiary established in Indonesia"
+        ]
+      }
+    ],
+    "keyProductsEyebrow": "KEY PRODUCTS",
+    "keyProductsTitle": "Key products",
+    "keyProducts": [
+      {
+        "badge": "EN",
+        "en": "ENDOSCOPIC",
+        "kr": "Gastrointestinal endoscopic instruments",
+        "features": [
+          "CORE-Forcep — disposable biopsy forceps",
+          "CORE-Snare — polypectomy snare",
+          "CORE-Clip — reopenable hemostatic clip",
+          "CORE-Knife — high-frequency electrosurgical knife"
+        ]
+      },
+      {
+        "badge": "LA",
+        "en": "LAPAROSCOPIC",
+        "kr": "Laparoscopic surgical instruments",
+        "features": [
+          "CORE-Trocar — bladeless trocar with a double air seal",
+          "CORE-SPORT — rotatable multi-channel port",
+          "CORE-SMOFIX — surgical smoke filter",
+          "MULPIX — integrated suction, irrigation and coagulation"
+        ]
+      },
+      {
+        "badge": "WD",
+        "en": "WOUND DRESSING",
+        "kr": "Wound dressing materials",
+        "features": [
+          "HEMOBLOCK — hemostatic chitosan gauze",
+          "HYLACELL — transparent wound dressing film",
+          "LACUDY — pH-balanced hydrogel",
+          "Licensed as Class 2 medical devices"
+        ]
+      },
+      {
+        "badge": "DC",
+        "en": "DERMACOSMETIC",
+        "kr": "Dermacosmetics & veterinary care",
+        "features": [
+          "MIRALET — plant-derived skincare line",
+          "FEMIOLIN — women's health care",
+          "ANICUDY — wound dressing for pets",
+          "Vegan, safe raw materials"
+        ]
+      }
+    ],
+    "aboutCtaTitle": "Would you like to know more about INCORE products?",
+    "aboutCtaSubtitle": "Our team is ready to advise you on specifications, certifications and distribution terms."
+  },
+  "products": {
+    "eyebrow": "PRODUCTS",
+    "titleEn": "PRODUCT LINE-UP",
+    "title": "Product line-up",
+    "subtitle": "Disposable medical devices, wound dressing materials, dermacosmetics and veterinary products.",
+    "moreLabel": "View details →",
+    "featuresLabel": "Features",
+    "ctaTitle": "Need a quotation or the full catalogue?",
+    "ctaDesc": "Contact us for detailed specifications and distribution partnership terms.",
+    "ctaBtn": "Contact Us →",
+    "categories": [
+      {
+        "id": "noi-soi",
+        "tab": "Endoscopic",
+        "image": "assets/products/thumb/core-forcep.png",
+        "kr": "GI Endoscopy",
+        "title": "GASTROINTESTINAL ENDOSCOPY",
+        "desc": "Disposable endoscopic instruments for biopsy, polypectomy, hemostasis and mucosal dissection.",
+        "items": [
+          {
+            "no": "01",
+            "title": "CORE-Forcep",
+            "mute": "CORE-",
+            "image": "assets/products/core-forcep.png",
+            "features": [
+              {
+                "tag": "Intended use",
+                "lines": [
+                  "A disposable endoscopic biopsy forceps used to collect tissue samples during endoscopic procedures.",
+                  "Consists of a cup, a wire and a handle, and is introduced through the working channel of the endoscope."
+                ]
+              },
+              {
+                "tag": "Rotatable tip",
+                "lines": [
+                  "The rotatable cup makes lateral-wall lesions easier to reach and handle."
+                ]
+              },
+              {
+                "tag": "Multiple sizes",
+                "lines": [
+                  "Available in 1.7 / 2.0 / 2.3 mm cup sizes."
+                ]
+              },
+              {
+                "tag": "Grip force",
+                "lines": [
+                  "Effective bite force reduces hand fatigue for the operator."
+                ]
+              },
+              {
+                "tag": "Sharpness",
+                "lines": [
+                  "Multi-layer stamping technology captures more tissue with less force."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-FCN17S / 17L — ø1.7 / 1600 · 2300 mm / Oval cup / Coil sheath",
+                  "IC-FCN20S / 20L — ø2.0 / 1600 · 2300 mm / Oval cup / Coil sheath",
+                  "IC-FCN23S / 23L — ø2.3 / 1600 · 2300 mm / Oval cup / Coil sheath"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "02",
+            "title": "CORE-Injector",
+            "mute": "CORE-",
+            "image": "assets/products/core-injector.png",
+            "features": [
+              {
+                "tag": "Intended use",
+                "lines": [
+                  "A disposable endoscopic injection needle used to inject fluid into the mucosa or a blood vessel for hemostasis or sclerotherapy during endoscopic procedures."
+                ]
+              },
+              {
+                "tag": "No needle jamming",
+                "lines": [
+                  "The shafted opening structure keeps the needle from jamming during operation."
+                ]
+              },
+              {
+                "tag": "Durability",
+                "lines": [
+                  "The needle does not bend even after repeated operation."
+                ]
+              },
+              {
+                "tag": "Expanded 25G lumen",
+                "lines": [
+                  "Less force is required when injecting fluid."
+                ]
+              },
+              {
+                "tag": "Sharp needle tip",
+                "lines": [
+                  "A triple-bevel needle machined to high precision."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-IJ2323 — 0.1t / 4 mm / 23G / 2300 mm",
+                  "IC-IJ2523 — 0.1t / 4 mm / 25G / 2300 mm",
+                  "IC-IJX2323S — soft sheath type",
+                  "IC-IJ2523S — soft sheath type"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "03",
+            "title": "CORE-Snare",
+            "mute": "CORE-",
+            "image": "assets/products/core-snare.png",
+            "features": [
+              {
+                "tag": "Intended use",
+                "lines": [
+                  "A disposable resection snare used to remove polyps and tissue during endoscopic procedures."
+                ]
+              },
+              {
+                "tag": "Rotatable",
+                "lines": [
+                  "A 1:1 wire response ratio allows delicate, precise handling."
+                ]
+              },
+              {
+                "tag": "Anti-rebound",
+                "lines": [
+                  "Minimises rebound during insertion and withdrawal."
+                ]
+              },
+              {
+                "tag": "Reduced discomfort",
+                "lines": [
+                  "The R-processed rounded sheath tip makes insertion and withdrawal smooth."
+                ]
+              },
+              {
+                "tag": "Multiple sizes",
+                "lines": [
+                  "Loop sizes from 10 mm to 30 mm."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-SN0210 / 0215 — Diamond / Cold",
+                  "IC-SN0310 ~ 0330 — Oval / Soft",
+                  "IC-SN0410 ~ 0430 — Oval / Stiff",
+                  "IC-SNR series — same specifications, with rotation"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "04",
+            "title": "CORE-Clip",
+            "mute": "CORE-",
+            "image": "assets/products/core-clip.png",
+            "features": [
+              {
+                "tag": "Intended use",
+                "lines": [
+                  "A disposable endoscopic clip used for hemostasis of mucosal and submucosal sites, bleeding ulcers, polyps, arteries and colonic diverticula."
+                ]
+              },
+              {
+                "tag": "Simple operation",
+                "lines": [
+                  "A one-piece structure, so no re-sterilisation is required."
+                ]
+              },
+              {
+                "tag": "Improved grip force",
+                "lines": [
+                  "The optimised clip design delivers superior clamping pressure."
+                ]
+              },
+              {
+                "tag": "Rotatable",
+                "lines": [
+                  "The rotation function makes handling convenient."
+                ]
+              },
+              {
+                "tag": "Reopenable",
+                "lines": [
+                  "The clip can be reopened to grip the bleeding site precisely."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "JW-ECC23S / M / L / X — 9 / 11 / 13 / 16 mm, O.D 2.2 mm, 2300 mm",
+                  "JW-ECN23S / M / L / X — 9 / 11 / 13 / 16 mm, O.D 2.1 mm, 2300 mm"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "05",
+            "title": "CORE-Knife",
+            "mute": "CORE-",
+            "image": "assets/products/core-knife.png",
+            "features": [
+              {
+                "tag": "Intended use",
+                "lines": [
+                  "A disposable electrosurgical knife that uses high-frequency current to incise tissue in the gastrointestinal tract during endoscopic procedures."
+                ]
+              },
+              {
+                "tag": "Cutting performance",
+                "lines": [
+                  "Cutting force is enhanced by appropriate pressure."
+                ]
+              },
+              {
+                "tag": "Anti-adhesion",
+                "lines": [
+                  "The surface finish of the knife limits debris sticking to the blade."
+                ]
+              },
+              {
+                "tag": "Various tip types",
+                "lines": [
+                  "A range of knife tips comparable to premium products from other manufacturers."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-KNA001 — D type / 2300 mm",
+                  "IC-KNA002 — D type / 1800 mm",
+                  "IC-KNI001 — I type / 2300 mm",
+                  "IC-KNI002 — I type / 1800 mm"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "06",
+            "title": "Hot-Biopsy",
+            "mute": "Hot-",
+            "image": "assets/products/hot-biopsy.png",
+            "features": [
+              {
+                "tag": "Intended use",
+                "lines": [
+                  "A disposable endoscopic biopsy device, similar to CORE-Forcep but operating together with high-frequency current."
+                ]
+              },
+              {
+                "tag": "Sharpness",
+                "lines": [
+                  "The upgraded cup minimises thermal damage to tissue and bleeding."
+                ]
+              },
+              {
+                "tag": "Cutting performance",
+                "lines": [
+                  "Lower electrical resistance improves cutting efficiency."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-HBA004 — ø2.3 / 2300 mm"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "noi-soi-o-bung",
+        "tab": "Laparoscopic",
+        "image": "assets/products/thumb/core-trocar.png",
+        "kr": "Laparoscopic Surgery",
+        "title": "LAPAROSCOPIC SURGERY",
+        "desc": "Disposable trocars, multi-channel ports, surgical smoke filters and suction-coagulation instruments.",
+        "items": [
+          {
+            "no": "01",
+            "title": "CORE-Trocar",
+            "mute": "CORE-",
+            "image": "assets/products/core-trocar.png",
+            "features": [
+              {
+                "tag": "Intended use",
+                "lines": [
+                  "A sterile single-use medical device comprising a cannula that creates an access route for surgical instruments and a trocar that helps introduce the endoscope into the abdominal cavity."
+                ]
+              },
+              {
+                "tag": "Ergonomic design",
+                "lines": [
+                  "Penetrates the abdominal wall with little force and offers a comfortable grip for the surgeon."
+                ]
+              },
+              {
+                "tag": "Safety",
+                "lines": [
+                  "The bladeless tip reduces tissue damage."
+                ]
+              },
+              {
+                "tag": "Detachable cannula",
+                "lines": [
+                  "Debris generated during surgery is easy to remove (8 / 10 / 12 mm types)."
+                ]
+              },
+              {
+                "tag": "Air-tightness",
+                "lines": [
+                  "A double-seal structure maintains outstanding air-tightness."
+                ]
+              },
+              {
+                "tag": "Serrated surface",
+                "lines": [
+                  "The serrated cannula surface limits slippage during surgery."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "2 mm — IC-TC02 (Ø2.3 / 125 mm), IC-TC02S (100 mm)",
+                  "3 mm — IC-TC03 (Ø3.5 / 125 mm), IC-TC03S (100 mm)",
+                  "5 mm — IC-TC05L (Ø5.9 / 140 mm), IC-TC05 (125 mm), IC-TC05S (100 mm)",
+                  "8 / 10 / 12 mm — IC-TC08 (Ø8.0), IC-TC10 (Ø11.7), IC-TC12 (Ø12.8)"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "02",
+            "title": "CORE-SPORT",
+            "mute": "CORE-",
+            "image": "assets/products/core-sport.png",
+            "features": [
+              {
+                "tag": "Intended use",
+                "lines": [
+                  "A single-use device that widens the incision in laparoscopic surgery. The Port-Assay combines with the Retractor to create an instrument access route, while the Retractor expands the approach."
+                ]
+              },
+              {
+                "tag": "Rotatable port",
+                "lines": [
+                  "The port rotates, maximising convenience when connecting surgical instruments."
+                ]
+              },
+              {
+                "tag": "One-touch structure",
+                "lines": [
+                  "Fast assembly and removal between Port-Assay A and the Retractor."
+                ]
+              },
+              {
+                "tag": "Air-tightness",
+                "lines": [
+                  "A double-seal structure maintains outstanding air-tightness."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-SP01 — 5 mm × 1 + 12 mm × 2, 3 ports in total, height 84 / 160 mm",
+                  "IC-SP04 — 5 mm × 2 + 12 mm × 2, 4 ports in total, height 84 / 160 mm",
+                  "IC-SR01 — Retractor only, height 160 mm"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "03",
+            "title": "CORE-SMOFIL",
+            "mute": "CORE-",
+            "image": "assets/products/core-smofil.png",
+            "features": [
+              {
+                "tag": "Intended use",
+                "lines": [
+                  "A sterile single-use device that absorbs the harmful gas generated during surgery to protect patients and medical staff."
+                ]
+              },
+              {
+                "tag": "Principle",
+                "lines": [
+                  "Connected to the valve mounted on the CORE-Trocar, harmful gas is drawn through and captured in the filter."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-SM02"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "04",
+            "title": "CORE-SMOFIX",
+            "mute": "CORE-",
+            "image": "assets/products/core-smofix.png",
+            "features": [
+              {
+                "tag": "CORE-FIX",
+                "lines": [
+                  "A device that covers the surgical site and protects it from contamination. A single-use product that does not come into direct contact with the wound or the inside of the body."
+                ]
+              },
+              {
+                "tag": "CORE-SMOFIL",
+                "lines": [
+                  "A device that draws off and removes smoke, keeping the surgical field clearly visible.",
+                  "The adapter is connected to the valve on the trocar; under abdominal pressure the smoke is drawn through the tube into the filter housing."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-SF01 — IC-FX01 + IC-SM02",
+                  "IC-SF02 — IC-FX02 + IC-SM02",
+                  "IC-SF03 — IC-FX03 + IC-SM02"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "05",
+            "title": "MULPIX",
+            "mute": "",
+            "image": "assets/products/mulpix.png",
+            "features": [
+              {
+                "tag": "MULPIX",
+                "lines": [
+                  "A catheter that uses no electrical energy, intended for aspirating body fluid. It has a suction button and a release button to control the irrigation flow from the cleaning device."
+                ]
+              },
+              {
+                "tag": "MULPIX E",
+                "lines": [
+                  "A disposable hand-held electrode for electrosurgical units. It delivers high-frequency (RF) energy to generate heat at the electrode for tissue cutting, coagulation and hemostasis, while fluid is aspirated or released through the shaft to clean the surgical field."
+                ]
+              },
+              {
+                "tag": "3-in-1 integration",
+                "lines": [
+                  "Cutting, suction and coagulation in a single instrument."
+                ]
+              },
+              {
+                "tag": "Options",
+                "lines": [
+                  "Handle type: Gun / Trumpet",
+                  "Electrode tip: Hook / Spatula / Right Angle / Curved Dissector",
+                  "Shaft length: 440 / 340 / 290 mm"
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-MEG series — Gun handle, with electrode",
+                  "IC-MET series — Trumpet handle, with electrode",
+                  "IC-MG / IC-MT series — without electrode"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "06",
+            "title": "Core-Cervical Balloon",
+            "mute": "Core-",
+            "image": "assets/products/cervical-balloon.png",
+            "features": [
+              {
+                "tag": "Intended use",
+                "lines": [
+                  "A cervical hemostatic balloon that controls bleeding quickly and simply."
+                ]
+              },
+              {
+                "tag": "Safe material",
+                "lines": [
+                  "Made of silicone, eliminating the risk of latex allergy."
+                ]
+              },
+              {
+                "tag": "Minimally invasive",
+                "lines": [
+                  "A safe, non-invasive procedure."
+                ]
+              },
+              {
+                "tag": "Model",
+                "lines": [
+                  "IC-WB02 — sheath included",
+                  "IC-WB04 — without sheath"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "bang-gac",
+        "tab": "Wound dressing",
+        "image": "assets/products/thumb/lacudy.png",
+        "kr": "Wound Dressing",
+        "title": "WOUND DRESSING MATERIALS",
+        "desc": "Hemostatic chitosan gauze, transparent dressing film and pH-balanced hydrogel.",
+        "items": [
+          {
+            "no": "01",
+            "title": "HEMOBLOCK",
+            "mute": "",
+            "image": "assets/products/hemoblock.png",
+            "features": [
+              {
+                "tag": "HEMOBLOCK GAUZE",
+                "lines": [
+                  "Chitosan gauze that forms a protective film over the wound and promotes coagulation to stop bleeding.",
+                  "It absorbs blood to keep the field of view clear and to help prevent infection when used in endoscopic surgery."
+                ]
+              },
+              {
+                "tag": "HEMOBLOCK TAMPON",
+                "lines": [
+                  "Designed for curved sites or areas that are difficult to cover with ordinary gauze.",
+                  "Used in cervical conization in obstetrics and gynaecology and in anorectal surgery."
+                ]
+              },
+              {
+                "tag": "Sizes",
+                "lines": [
+                  "Gauze — 7.5 × 5, 10 × 10, 7.5 × 20, 7.5 × 100, 7.5 × 200, 7.5 × 300 cm",
+                  "Round tampon — Ø3.0 cm (IC-HBC001)",
+                  "Cone tampon — Ø2.7 ~ 3.3 cm (IC-HBC002)"
+                ]
+              }
+            ]
+          },
+          {
+            "no": "02",
+            "title": "HYLACELL",
+            "mute": "",
+            "image": "assets/products/hylacell.png",
+            "features": [
+              {
+                "tag": "Intended use",
+                "lines": [
+                  "A transparent, adhesive wound dressing film for use on skin and mucous membranes."
+                ]
+              },
+              {
+                "tag": "Composition",
+                "lines": [
+                  "Formulated with high-purity hyaluronic acid as its base material."
+                ]
+              },
+              {
+                "tag": "Effect",
+                "lines": [
+                  "Maintains a moist wound environment, supports tissue regeneration and protects against external factors."
+                ]
+              }
+            ]
+          },
+          {
+            "no": "03",
+            "title": "LACUDY",
+            "mute": "",
+            "image": "assets/products/lacudy.png",
+            "features": [
+              {
+                "tag": "Intended use",
+                "lines": [
+                  "A transparent gel-type wound dressing that can be used on skin and mucous membranes, including the vulvar area."
+                ]
+              },
+              {
+                "tag": "pH balance",
+                "lines": [
+                  "Its mildly acidic pH matches the vulvar area, helping to balance mucosal pH and creating an environment favourable to Lactobacillus."
+                ]
+              },
+              {
+                "tag": "Anti-inflammation & regeneration",
+                "lines": [
+                  "Hyaluronic acid and alginate support wound healing on skin and mucous membranes.",
+                  "It forms a permeable film that absorbs exudate, easing inflammation and moisturising at the same time."
+                ]
+              },
+              {
+                "tag": "High-viscosity hydrogel",
+                "lines": [
+                  "At 20,000 cP it does not run off, making it easy to apply.",
+                  "A non-sticky texture limits any feeling of discomfort."
+                ]
+              },
+              {
+                "tag": "Medical device",
+                "lines": [
+                  "Not a cosmetic — a licensed sterile Class 2 medical device approved for safety and efficacy.",
+                  "No added preservatives."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "my-pham",
+        "tab": "Dermacosmetic",
+        "image": "assets/products/thumb/double-mist.png",
+        "kr": "Dermacosmetic",
+        "title": "DERMACOSMETICS",
+        "desc": "The MIRALET and FEMIOLIN lines — plant-derived skincare developed on a medical device foundation.",
+        "items": [
+          {
+            "no": "01",
+            "title": "Miralet Phyto Intensive Skinbooster",
+            "mute": "Miralet",
+            "image": "assets/products/skinbooster.png",
+            "features": [
+              {
+                "tag": "Multi-layer hydration",
+                "lines": [
+                  "Delivers moisture from the surface through to the deeper layers of the skin."
+                ]
+              },
+              {
+                "tag": "Protective barrier",
+                "lines": [
+                  "Reinforces the skin's protective barrier."
+                ]
+              },
+              {
+                "tag": "Elasticity",
+                "lines": [
+                  "Improves elasticity and smooths the surface of the skin."
+                ]
+              }
+            ]
+          },
+          {
+            "no": "02",
+            "title": "Miralet Phyto Intensive Ampoule",
+            "mute": "Miralet",
+            "image": "assets/products/ampoule.png",
+            "features": [
+              {
+                "tag": "Plant-derived PDRN",
+                "lines": [
+                  "Multi-layer hydration from the surface to the deeper layers, improving elasticity and reinforcing the skin barrier."
+                ]
+              },
+              {
+                "tag": "Three plant exosomes",
+                "lines": [
+                  "Improves absorption, extracted from natural plant sources."
+                ]
+              },
+              {
+                "tag": "Three types of hyaluronic acid",
+                "lines": [
+                  "Safe, environmentally friendly plant-derived raw materials.",
+                  "Supports skin recovery and regeneration for smooth skin and an anti-ageing effect."
+                ]
+              },
+              {
+                "tag": "Usage note",
+                "lines": [
+                  "Preservative-free — use within 7 days of opening."
+                ]
+              }
+            ]
+          },
+          {
+            "no": "03",
+            "title": "Miralet Phyto Double Mist",
+            "mute": "Miralet",
+            "image": "assets/products/double-mist.png",
+            "features": [
+              {
+                "tag": "Dual pH coating",
+                "lines": [
+                  "Creates an acidic pH 5.5 skin environment that limits the microorganisms behind atopic dermatitis and acne.",
+                  "Forms a pH 4.7 hydrogel film that stimulates an environment for skin regeneration.",
+                  "A dual coating: a pH 4.7 skin barrier and a pH 5.5 inner layer."
+                ]
+              },
+              {
+                "tag": "Vegan Exosome",
+                "lines": [
+                  "Lower cytotoxicity than animal-derived exosomes.",
+                  "High stability, applicable to a wide range of formulations.",
+                  "Approximately 130 nm in size — deep, fast absorption."
+                ]
+              },
+              {
+                "tag": "How to use",
+                "lines": [
+                  "In the evening after cleansing, spray Double Mist to prepare the skin.",
+                  "Apply Intensive Ampoule evenly over the face (0.7 ~ 1.0 ml per use recommended).",
+                  "Spray Double Mist again during use to add moisture.",
+                  "The next morning, rinse gently with water."
+                ]
+              }
+            ]
+          },
+          {
+            "no": "04",
+            "title": "FEMIOLIN",
+            "mute": "",
+            "image": "assets/products/femiolin.png",
+            "features": [
+              {
+                "tag": "Women's health care",
+                "lines": [
+                  "Developed on the basis of LACUDY — a Class 2 medical device prescribed by obstetricians and gynaecologists."
+                ]
+              },
+              {
+                "tag": "A proven foundation",
+                "lines": [
+                  "LACUDY is a wound dressing material that eases inflammation and promotes tissue regeneration, currently prescribed at dermatology clinics throughout Korea."
+                ]
+              },
+              {
+                "tag": "Classification",
+                "lines": [
+                  "Building on the efficacy and safety of LACUDY, FEMIOLIN was developed as a functional cosmetic."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "thu-y",
+        "tab": "Animal",
+        "image": "assets/products/thumb/anicudy.png",
+        "kr": "Animal Healthcare",
+        "title": "VETERINARY PRODUCTS",
+        "desc": "Wound dressing material for pets, developed from technology proven in human care.",
+        "items": [
+          {
+            "no": "01",
+            "title": "ANICUDY",
+            "mute": "",
+            "image": "assets/products/anicudy.png",
+            "features": [
+              {
+                "tag": "Intended use",
+                "lines": [
+                  "A premium wound dressing for pets, using the high-purity hyaluronic acid that forms the base of our human products."
+                ]
+              },
+              {
+                "tag": "Effect",
+                "lines": [
+                  "Helps the affected area recover faster after surgery.",
+                  "Promotes regeneration in both small and large wounds.",
+                  "Protects the wound, preventing secondary infection and complications.",
+                  "Supports the treatment of skin conditions in pets (atopic dermatitis, pododermatitis, dermatitis).",
+                  "Soothes and moisturises the skin."
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "business": {
+    "eyebrow": "BUSINESS AREA",
+    "title": "Business areas",
+    "subtitle": "INCORE is an advanced medical device manufacturer serving both the domestic and international markets.",
+    "exampleLabel": "Applications",
+    "items": [
+      {
+        "no": "01",
+        "kr": "Disposable medical devices",
+        "sub": "Medical Device",
+        "desc": "Disposable gastrointestinal endoscopic and laparoscopic surgical instruments, manufactured under KGMP and ISO 13485 systems.",
+        "tags": [
+          "GI endoscopy",
+          "Laparoscopy",
+          "Hemostasis",
+          "Biopsy"
+        ]
+      },
+      {
+        "no": "02",
+        "kr": "Wound dressing materials",
+        "sub": "Wound Dressing",
+        "desc": "Hemostatic chitosan gauze and hyaluronic-acid-based hydrogels for skin and mucous membranes, licensed as medical devices.",
+        "tags": [
+          "HEMOBLOCK",
+          "HYLACELL",
+          "LACUDY"
+        ]
+      },
+      {
+        "no": "03",
+        "kr": "Dermacosmetics",
+        "sub": "Dermacosmetic",
+        "desc": "The MIRALET and FEMIOLIN lines, using plant-derived exosomes and PDRN, developed from our medical device foundation.",
+        "tags": [
+          "MIRALET",
+          "FEMIOLIN",
+          "Vegan exosome"
+        ]
+      },
+      {
+        "no": "04",
+        "kr": "Veterinary products",
+        "sub": "Animal Healthcare",
+        "desc": "Endoscopic devices and wound dressing materials for pets, applying technology already proven in human care.",
+        "tags": [
+          "ANICUDY",
+          "Veterinary endoscopy"
+        ]
+      }
+    ]
+  },
+  "technology": {
+    "eyebrow": "TECHNOLOGY",
+    "titleLine1": "R&D capability",
+    "titleLine2": "and quality system",
+    "description": "Our in-house research institute, established in 2017, works alongside clinical medical teams\nto develop and refine products around real hospital needs.",
+    "items": [
+      {
+        "no": "01",
+        "title": "In-house research institute",
+        "spec": "Since 2017",
+        "desc": "An internal R&D team responsible for product design, testing and improvement."
+      },
+      {
+        "no": "02",
+        "title": "Quality system",
+        "spec": "KGMP · ISO 13485",
+        "desc": "Every manufacturing process is operated and controlled to international standards."
+      },
+      {
+        "no": "03",
+        "title": "International certification",
+        "spec": "CE Marking",
+        "desc": "Our disposable endoscopic instrument line holds CE certification for export markets."
+      },
+      {
+        "no": "04",
+        "title": "Clinical collaboration",
+        "spec": "Hospitals & professors",
+        "desc": "Feedback from clinical practice feeds directly into product development."
+      }
+    ]
+  },
+  "techPage": {
+    "titleEn": "TECHNOLOGY",
+    "subtitle": "Technology & R&D",
+    "sections": [
+      {
+        "no": "01",
+        "titleKr": "Research & Development",
+        "titleEn": "RESEARCH & DEVELOPMENT",
+        "heading": "An in-house research institute, running continuously since 2017",
+        "desc": "INCORE established its in-house research institute in 2017 and has sustained continuous product development ever since. From gastrointestinal endoscopic instruments through to wound dressing materials and dermacosmetics, the entire product range originates from our internal research capability.",
+        "highlights": [
+          "Design, prototyping and testing carried out in-house",
+          "Development in collaboration with leading physicians and professors",
+          "Clinical feedback reflected directly in product design"
+        ]
+      },
+      {
+        "no": "02",
+        "titleKr": "Quality system",
+        "titleEn": "QUALITY SYSTEM",
+        "heading": "KGMP and ISO 13485 applied across the entire manufacturing process",
+        "desc": "The INCORE plant operates under the KGMP and ISO 13485 medical device quality management systems. From incoming raw materials through machining and sterilisation to final inspection, every step is controlled and documented.",
+        "highlights": [
+          "Medical device KGMP certification (2016)",
+          "ISO 13485 — disposable endoscopic instruments",
+          "Manufacturing licences for medical devices and in-vitro diagnostic devices"
+        ]
+      },
+      {
+        "no": "03",
+        "titleKr": "Global capability",
+        "titleEn": "GLOBAL CAPABILITY",
+        "heading": "CE certification and an international export network",
+        "desc": "INCORE's disposable endoscopic instrument line holds CE certification. The company has been designated a Promising Export Company, has exported through international organisations such as KOICA, and established a local subsidiary in Indonesia in 2023.",
+        "highlights": [
+          "CE Certificate — Disposable Endoscopic Instruments",
+          "Exports through international organisations (KOICA, NHS-UK FDA)",
+          "Local subsidiary in Indonesia (2023)",
+          "Distribution partnerships with B.Braun Korea and JW Pharmaceutical"
+        ]
+      }
+    ]
+  },
+  "certifications": {
+    "eyebrow": "CERTIFICATION",
+    "title": "Certifications & licences",
+    "subtitle": "INCORE's quality systems and manufacturing licences.",
+    "items": [
+      {
+        "no": "01",
+        "name": "In-vitro diagnostic device manufacturing licence",
+        "desc": "Invitro Diagnostic Medical Device Manufacturing License",
+        "image": "assets/cert/c9.png"
+      },
+      {
+        "no": "02",
+        "name": "CE Certificate",
+        "desc": "CE Certificate — Disposable Endoscopic Instruments",
+        "image": "assets/cert/c1.jpg"
+      },
+      {
+        "no": "03",
+        "name": "ISO 13485",
+        "desc": "ISO 13485 — Disposable Endoscopic Instruments",
+        "image": "assets/cert/c2.jpg"
+      },
+      {
+        "no": "04",
+        "name": "Enterprise attached research institute",
+        "desc": "Enterprise Attached Institute",
+        "image": "assets/cert/c3.jpg"
+      },
+      {
+        "no": "05",
+        "name": "GMP Certificate",
+        "desc": "GMP Certificate",
+        "image": "assets/cert/c4.jpg"
+      },
+      {
+        "no": "06",
+        "name": "Medical device manufacturing licence",
+        "desc": "Medical Instrument Manufacturer License Rev.01",
+        "image": "assets/cert/c5.jpg"
+      },
+      {
+        "no": "07",
+        "name": "Manufacturer Certificate No.16-4179",
+        "desc": "Manufacturer Certificate No.16-4179",
+        "image": "assets/cert/c6.jpg"
+      },
+      {
+        "no": "08",
+        "name": "Manufacturer Certificate No.16-4206",
+        "desc": "Manufacturer Certificate No.16-4206",
+        "image": "assets/cert/c7.jpg"
+      },
+      {
+        "no": "09",
+        "name": "Manufacturer Certificate No.16-4210",
+        "desc": "Manufacturer Certificate No.16-4210",
+        "image": "assets/cert/c8.jpg"
+      }
+    ]
+  },
+  "location": {
+    "eyebrow": "LOCATION",
+    "title": "Location & offices",
+    "subtitle": "Head office in Daegu, with branch offices in Daegu and the Seoul / Gyeonggi area.",
+    "placeName": "INCORE Co., Ltd. — 11, Hyeoksin-daero 78-gil, Dong-gu, Daegu"
+  },
+  "community": {
+    "titleEn": "NEWS",
+    "subtitle": "News & activities",
+    "intro": "Milestones and highlights from INCORE.",
+    "items": [
+      {
+        "year": "2023",
+        "title": "Local subsidiary established in Indonesia",
+        "desc": "INCORE expanded into the South-East Asian market by establishing a local subsidiary in Indonesia.",
+        "photo": "assets/main/card1.jpg"
+      },
+      {
+        "year": "2022",
+        "title": "Distribution partnership with JW Pharmaceutical",
+        "desc": "An exclusive distribution agreement was signed, alongside the launch of two new product lines, HYLACELL and LACUDY.",
+        "photo": "assets/main/card2.jpg"
+      },
+      {
+        "year": "2020",
+        "title": "Core-Medium System exported",
+        "desc": "The COVID-19 test kit was exported to Nepal through KOICA and obtained NHS-UK FDA certification.",
+        "photo": "assets/main/card3.jpg"
+      }
+    ]
+  },
+  "contactPage": {
+    "titleEn": "CONTACT US",
+    "subtitle": "Contact",
+    "formTitle": "Send us an enquiry",
+    "fields": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter your name"
+      },
+      "company": {
+        "label": "Company",
+        "placeholder": "Enter your company name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "example@company.com"
+      },
+      "phone": {
+        "label": "Phone",
+        "placeholder": "Enter your phone number"
+      },
+      "message": {
+        "label": "Message",
+        "placeholder": "Please describe the product or the subject of your enquiry."
+      }
+    },
+    "privacy": "I agree to the collection and use of my personal information",
+    "privacyLink": "View details",
+    "submit": "Send enquiry →",
+    "directTitle": "Direct contact",
+    "hoursLabel": "Business hours",
+    "hours": [
+      "Mon – Fri  09:00 – 18:00 (KST)",
+      "Lunch break  12:00 – 13:00",
+      "Closed on Saturdays, Sundays and public holidays"
+    ]
+  },
+  "cta": {
+    "eyebrow": "CONTACT",
+    "title": "Work with INCORE",
+    "subtitle": "We are ready to discuss specifications, certifications and distribution terms.",
+    "primaryCta": "Contact Us →",
+    "secondaryCta": "View Products →",
+    "tel": "+82-53-963-3514",
+    "email": "mktg01@incoremedi.com"
+  },
+  "footer": {
+    "tagline": "Innovative Core Technologies Of Medical Devices"
+  }
+}
