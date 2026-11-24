@@ -1,11 +1,11 @@
-# 로컬 전용 서버 도구 — GitHub Pages에 게시하면 안 됨
+# 비밀번호 파일 — 절대 커밋하지 않는다 (admin.config.example.json 만 공유)
 admin.config.json
-serve.ps1
-start-server.bat
 
-# 관리자 화면은 serve.ps1의 로컬 API에 의존하므로 Pages에서는 동작하지 않는다
-admin.html
-admin.js
+# 로컬 관리자 도구(serve.ps1 / admin.html)는 저장소에 포함한다.
+# 단, Pages에는 PHP/PowerShell 백엔드가 없으므로 관리자는 로컬에서만 동작한다.
+
+# 챗봇 API 키 — 절대 커밋하지 않는다
+chatbot.secret.json
 
 # 관리자 업로드 파일(로컬 전용)
 uploads/

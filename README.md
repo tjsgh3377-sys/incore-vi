@@ -18,8 +18,7 @@ Phiên bản tiếng Việt và tiếng Anh của [incoremedi.com](https://incor
 
 ## 로컬 실행
 
-`serve.ps1`과 `admin.html`은 로컬 전용이라 이 저장소에 포함되어 있지 않습니다.
-정적 서버라면 무엇이든 됩니다.
+사이트만 볼 때는 정적 서버라면 무엇이든 됩니다.
 
 ```bash
 python -m http.server 8753
@@ -29,6 +28,39 @@ python -m http.server 8753
 
 > `file://`로 직접 열면 동작하지 않습니다. `app.js`가 `content.json`을
 > XHR로 읽기 때문에 반드시 HTTP로 띄워야 합니다.
+
+## 관리자 페이지 (로컬 전용)
+
+`admin.html`은 `serve.ps1`이 제공하는 로컬 API(`/api/login`·`/api/content`·`/api/save`·
+`/api/upload`)에 의존합니다. **GitHub Pages에는 백엔드가 없으므로 관리자는 로컬에서만 동작합니다.**
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File serve.ps1
+```
+
+| 주소 | 용도 |
+| --- | --- |
+| <http://localhost:8753/> | 사이트 |
+| <http://localhost:8753/admin.html> | 관리자 |
+
+### 비밀번호 설정
+
+`admin.config.example.json`을 복사해 `admin.config.json`을 만들고 비밀번호를 바꿉니다.
+**`admin.config.json`은 `.gitignore`에 등록되어 있어 저장소에 올라가지 않습니다.**
+
+```bash
+cp admin.config.example.json admin.config.json
+```
+
+설정 파일이 없으면 `change-me`가 기본값으로 쓰입니다. 공개 저장소이므로 실제 비밀번호를
+코드에 적지 마세요.
+
+### 편집 범위
+
+좌측 8개 탭(홈·회사소개·제품소개·사업영역·기술력·인증/오시는 길·문의/CTA·커뮤니티)에서
+텍스트·이미지를 수정하고 저장하면 `content.json`에 반영됩니다.
+현재 관리자는 **베트남어(`content.json`)만 편집**하며, 영문은 `content_en.json`을 직접 수정합니다.
+(서버에는 영문 조회 `/api/content?lang=en`·저장 `/api/save-en`이 이미 구현되어 있습니다.)
 
 ## 언어 전환
 
