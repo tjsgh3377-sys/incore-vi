@@ -72,6 +72,20 @@
     /* 모드별 표시 */
     html[data-mode="local"]  .only-gh    { display:none !important; }
     html[data-mode="github"] .only-local { display:none !important; }
+    html[data-login="token"]    .only-pw    { display:none !important; }
+    html[data-login="password"] .only-token { display:none !important; }
+    .switch-login { display:inline-block; margin-top:14px; font-size:12.5px; color:var(--muted); cursor:pointer; text-decoration:underline; }
+    /* 비밀번호 설정 모달 */
+    .modal { position:fixed; inset:0; background:rgba(16,20,24,.45); display:flex; align-items:center; justify-content:center; z-index:50; padding:24px; }
+    .modal-card { background:#fff; border-radius:14px; padding:28px; width:440px; max-width:100%; box-shadow:0 18px 60px rgba(0,0,0,.2); max-height:90vh; overflow:auto; }
+    .modal-card h2 { font-size:16px; margin:0 0 6px; color:#1f2330; }
+    .modal-card .fl { display:block; font-size:12px; font-weight:700; color:var(--muted); margin:16px 0 6px; }
+    .modal-card input[type=password] { width:100%; padding:11px 12px; border:1px solid var(--line); border-radius:8px; font-size:14px; font-family:inherit; }
+    .modal-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:22px; }
+    .modal-actions button { border-radius:8px; padding:10px 18px; cursor:pointer; }
+    .warn-box { background:#fff8e6; border:1px solid #f3dca5; color:#8a6400; border-radius:9px; padding:11px 14px; font-size:12.5px; line-height:1.65; margin:14px 0 0; }
+    .meter { height:6px; border-radius:4px; background:#eef1f5; margin-top:9px; overflow:hidden; }
+    .meter span { display:block; height:100%; width:0; transition:width .2s, background .2s; }
     /* 좌측 탭 레이아웃 */
     .layout { max-width:1220px; margin:0 auto; display:flex; align-items:flex-start; }
     #sidenav { position:sticky; top:60px; width:214px; flex:0 0 214px; padding:22px 12px 22px 18px; align-self:flex-start; max-height:calc(100vh - 60px); overflow:auto; }
@@ -99,10 +113,12 @@
       <img src="../assets/logo.png" alt="INCORE">
       <h1>INCORE 베트남 사이트 관리자</h1>
       <p class="sub only-local">로컬 서버(serve.ps1)에 연결합니다.</p>
-      <p class="sub only-gh">GitHub 토큰으로 로그인합니다.<br>저장하면 저장소에 바로 커밋되어 사이트에 반영됩니다.</p>
+      <p class="sub only-gh only-pw">비밀번호로 로그인합니다.<br>저장하면 저장소에 바로 커밋되어 사이트에 반영됩니다.</p>
+      <p class="sub only-gh only-token">GitHub 토큰으로 로그인합니다.<br>저장하면 저장소에 바로 커밋되어 사이트에 반영됩니다.</p>
 
       <label class="fl only-local" for="pw">비밀번호</label>
-      <label class="fl only-gh" for="pw">GitHub 액세스 토큰 <span style="font-weight:500">(github_pat_… 로 시작)</span></label>
+      <label class="fl only-gh only-pw" for="pw">비밀번호</label>
+      <label class="fl only-gh only-token" for="pw">GitHub 액세스 토큰 <span style="font-weight:500">(github_pat_… 로 시작)</span></label>
       <input type="password" id="pw" autocomplete="current-password">
 
       <label class="remember only-gh">
@@ -112,7 +128,10 @@
       <div id="loginErr" class="msg err" style="font-size:13px;margin:10px 0 0;min-height:16px;text-align:left;white-space:pre-line;line-height:1.6;"></div>
       <button class="btn" id="loginBtn" style="width:100%;margin-top:14px;">로그인</button>
 
-      <div class="tokenhelp only-gh">
+      <span class="switch-login only-gh only-pw" id="toTokenLogin">GitHub 토큰으로 로그인</span>
+      <span class="switch-login only-gh only-token" id="toPwLogin">비밀번호로 로그인</span>
+
+      <div class="tokenhelp only-gh only-token">
         <b>토큰이 없다면</b><br>
         <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub에서 Fine-grained token 발급 ↗</a><br>
         · Repository access → <b>incore-vi</b> 저장소만 선택<br>
@@ -131,6 +150,7 @@
         <span class="badge" id="modeBadge"></span>
         <span class="sp"></span>
         <a href="../index.html" target="_blank" class="who">사이트 보기 ↗</a>
+        <button class="ghost only-gh" id="pwSetupBtn" style="padding:7px 14px;border-radius:7px;cursor:pointer;">비밀번호 설정</button>
         <button class="ghost" id="logoutBtn" style="padding:7px 14px;border-radius:7px;cursor:pointer;">로그아웃</button>
       </div>
     </header>
@@ -145,6 +165,42 @@
              style="width:168px;padding:9px 11px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit;background:#fcfcfd;">
       <button class="btn" id="saveBtn">저장하기</button>
       <button class="btn gh only-local" id="deployBtn" title="저장한 내용을 커밋하고 GitHub에 푸시합니다">GitHub에 반영</button>
+    </div>
+  </div>
+
+  <div id="pwModal" class="modal hidden">
+    <div class="modal-card">
+      <h2>비밀번호 설정</h2>
+      <p class="hint" style="margin:0">
+        지금 로그인에 쓰는 GitHub 토큰을 이 비밀번호로 잠가 저장소에 보관합니다.<br>
+        다음부터는 토큰 없이 비밀번호만으로 로그인합니다.
+      </p>
+
+      <label class="fl" for="newPw">새 비밀번호</label>
+      <input type="password" id="newPw" autocomplete="new-password">
+      <div class="meter"><span id="pwMeterBar"></span></div>
+      <div class="hint" id="pwMeterText">12자 이상 — 길수록 안전합니다.</div>
+
+      <label class="fl" for="newPw2">다시 입력</label>
+      <input type="password" id="newPw2" autocomplete="new-password">
+
+      <button class="ghost" id="genPwBtn" type="button"
+              style="margin-top:14px;border-radius:8px;padding:9px 14px;cursor:pointer;font-size:13px;">
+        강한 비밀번호 만들어 넣기
+      </button>
+      <div class="hint" id="genPwOut" style="font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;color:#1f2330;"></div>
+
+      <div class="warn-box">
+        암호문은 <b>공개 저장소에 그대로 올라갑니다.</b> 누구나 받아가서 시간을 들여
+        비밀번호를 대입해볼 수 있습니다. 짧거나 추측하기 쉬운 비밀번호는 쓰지 마세요.<br>
+        비밀번호가 새어나간 것 같으면 GitHub에서 그 토큰을 폐기하면 즉시 무력화됩니다.
+      </div>
+
+      <div id="pwModalMsg" class="msg" style="font-size:13px;margin-top:12px;min-height:16px;white-space:pre-line;line-height:1.6;"></div>
+      <div class="modal-actions">
+        <button class="ghost" id="pwCancelBtn" type="button">취소</button>
+        <button class="btn" id="pwSaveBtn" type="button">설정하기</button>
+      </div>
     </div>
   </div>
 

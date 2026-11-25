@@ -27,15 +27,21 @@
     var err = $("#loginErr");
     var btn = $("#loginBtn");
     var remember = $("#remember") ? $("#remember").checked : false;
+    var value = $("#pw").value;
+    var byPassword = (B.mode === "github" && loginMode === "password");
+
     err.textContent = "";
     btn.disabled = true;
-    B.login($("#pw").value, remember).then(function () {
-      btn.disabled = false;
-      showApp();
-    }).catch(function (e) {
-      btn.disabled = false;
-      err.textContent = (e && e.message) ? e.message : "로그인에 실패했습니다.";
-    });
+    if (byPassword) btn.textContent = "확인 중...";
+
+    function done() { btn.disabled = false; btn.textContent = "로그인"; }
+
+    (byPassword ? B.loginWithPassword(value, remember) : B.login(value, remember))
+      .then(function () { done(); showApp(); })
+      .catch(function (e) {
+        done();
+        err.textContent = (e && e.message) ? e.message : "로그인에 실패했습니다.";
+      });
   }
 
   function logout() { B.logout(); location.reload(); }
@@ -835,6 +841,147 @@
       .catch(function (e) { fail(msg, e, "GitHub 반영 실패 (서버 연결 오류)"); });
   }
 
+  // ---------- 비밀번호 잠금 UI (GitHub 모드 전용) ----------
+  var PW_FLAG = "incore_has_pw";   // 비밀번호가 설정돼 있었는지 기억 (로그인 화면 깜빡임 방지)
+  var loginMode = "token";
+  var loginModeTouched = false;
+
+  function setLoginMode(m, clear) {
+    loginMode = m;
+    document.documentElement.setAttribute("data-login", m);
+    if (clear) {
+      $("#loginErr").textContent = "";
+      $("#pw").value = "";
+      $("#pw").focus();
+    }
+  }
+
+  // 길이·문자 종류로 대략의 엔트로피(비트)를 추정한다.
+  // 사전 단어까지 보는 제대로 된 추정기는 아니므로, 뻔한 패턴은 크게 감점해
+  // 과대평가되지 않도록 한다. (암호문이 공개되는 구조라 이 선이 사실상 방어선이다)
+  var MIN_BITS = 50;
+  var WEAK_WORD = /incore|medi|vietnam|tjsgh|admin|master|qwerty|asdf|password|letmein|welcome|1234|2345|abcd|0000|관리자|비밀번호/gi;
+
+  function weakHits(s) { return (String(s).match(WEAK_WORD) || []).length; }
+
+  function pwBits(s) {
+    if (!s) return 0;
+    var space = 0;
+    if (/[a-z]/.test(s)) space += 26;
+    if (/[A-Z]/.test(s)) space += 26;
+    if (/[0-9]/.test(s)) space += 10;
+    if (/[^a-zA-Z0-9]/.test(s)) space += 20;
+    var bits = s.length * (Math.log(space || 2) / Math.log(2));
+
+    bits -= 28 * weakHits(s);                       // 흔한 단어는 사전 공격에 바로 뚫린다 (갯수만큼 감점)
+    if (/(19|20)\d\d/.test(s)) bits -= 8;           // 연도
+    var seen = {}, uniq = 0;
+    for (var i = 0; i < s.length; i++) { if (!seen[s[i]]) { seen[s[i]] = 1; uniq++; } }
+    if (uniq <= 4) bits = Math.min(bits, 28);       // 같은 글자 반복
+
+    return Math.max(0, Math.round(bits));
+  }
+
+  function pwProblem(s) {
+    if (s.length < B.minPassword) return B.minPassword + "자 이상이어야 합니다. (지금 " + s.length + "자)";
+    if (pwBits(s) < MIN_BITS) {
+      return "비밀번호가 너무 약합니다.\n" +
+             "암호문이 공개 저장소에 올라가므로 대입 공격에 버틸 만큼 길고 불규칙해야 합니다.\n" +
+             "[강한 비밀번호 만들어 넣기]를 쓰거나, 관련 없는 단어 4개 이상을 이어 보세요.";
+    }
+    return null;
+  }
+
+  function updateMeter() {
+    var v = $("#newPw").value;
+    var bits = pwBits(v);
+    var bar = $("#pwMeterBar");
+    bar.style.width = Math.min(100, Math.round(bits / 90 * 100)) + "%";
+    bar.style.background = bits < 50 ? "#d92d20" : (bits < 70 ? "#e6a700" : "#12a150");
+
+    var t = $("#pwMeterText");
+    if (!v) { t.textContent = B.minPassword + "자 이상 — 길수록 안전합니다."; return; }
+    if (v.length < B.minPassword) { t.textContent = B.minPassword + "자 이상 필요 (지금 " + v.length + "자)"; return; }
+
+    var note = weakHits(v) ? " 흔한 단어가 들어 있어 실제로는 더 약합니다." : "";
+    t.textContent = "추정 강도 약 " + bits + "비트 — " +
+      (bits < MIN_BITS ? "너무 약합니다." : (bits < 70 ? "보통" : "충분합니다.")) + note;
+  }
+
+  function openPwModal() {
+    $("#newPw").value = "";
+    $("#newPw2").value = "";
+    $("#genPwOut").textContent = "";
+    $("#pwModalMsg").textContent = "";
+    $("#pwModalMsg").className = "msg";
+    updateMeter();
+    $("#pwModal").classList.remove("hidden");
+    $("#newPw").focus();
+  }
+
+  function closePwModal() { $("#pwModal").classList.add("hidden"); }
+
+  function savePassword() {
+    var msg = $("#pwModalMsg");
+    var a = $("#newPw").value;
+    var b = $("#newPw2").value;
+    msg.className = "msg";
+
+    var problem = pwProblem(a);
+    if (problem) {
+      msg.className = "msg err";
+      msg.textContent = problem;
+      return;
+    }
+    if (a !== b) {
+      msg.className = "msg err";
+      msg.textContent = "두 번 입력한 비밀번호가 다릅니다.";
+      return;
+    }
+
+    $("#pwSaveBtn").disabled = true;
+    msg.textContent = "암호화해서 저장소에 올리는 중... (몇 초 걸립니다)";
+    B.setPassword(a).then(function () {
+      $("#pwSaveBtn").disabled = false;
+      try { localStorage.setItem(PW_FLAG, "1"); } catch (e) {}
+      msg.className = "msg ok";
+      msg.textContent = "설정했습니다. 다음부터는 이 비밀번호로 로그인하세요.";
+      setTimeout(closePwModal, 1800);
+    }).catch(function (e) {
+      $("#pwSaveBtn").disabled = false;
+      msg.className = "msg err";
+      msg.textContent = (e && e.message) ? e.message : "설정에 실패했습니다.";
+    });
+  }
+
+  function wirePasswordUi() {
+    $("#toTokenLogin").addEventListener("click", function () { loginModeTouched = true; setLoginMode("token", true); });
+    $("#toPwLogin").addEventListener("click", function () { loginModeTouched = true; setLoginMode("password", true); });
+    $("#pwSetupBtn").addEventListener("click", openPwModal);
+    $("#pwCancelBtn").addEventListener("click", closePwModal);
+    $("#pwSaveBtn").addEventListener("click", savePassword);
+    $("#newPw").addEventListener("input", updateMeter);
+    $("#newPw2").addEventListener("keydown", function (e) { if (e.key === "Enter") savePassword(); });
+    $("#pwModal").addEventListener("click", function (e) { if (e.target === $("#pwModal")) closePwModal(); });
+    $("#genPwBtn").addEventListener("click", function () {
+      var p = B.suggestPassword();
+      $("#newPw").value = p;
+      $("#newPw2").value = p;
+      $("#genPwOut").textContent = p + "  ← 비밀번호 관리자에 저장해 두세요";
+      updateMeter();
+    });
+
+    // 지난 번 상태를 먼저 적용해 깜빡임을 줄이고, 실제 확인 결과로 바로잡는다
+    var guess = "token";
+    try { if (localStorage.getItem(PW_FLAG) === "1") guess = "password"; } catch (e) {}
+    setLoginMode(guess, false);
+
+    B.hasPassword().then(function (has) {
+      try { localStorage.setItem(PW_FLAG, has ? "1" : "0"); } catch (e) {}
+      if (!loginModeTouched) setLoginMode(has ? "password" : "token", false);
+    }).catch(function () {});
+  }
+
   // ---------- 모드별 화면 ----------
   function setupMode() {
     var isGh = (B.mode === "github");
@@ -845,6 +992,7 @@
     if (isGh) {
       $("#saveBtn").textContent = "저장하고 발행";
       $("#deployNote").setAttribute("placeholder", "수정 메모 (커밋 메시지)");
+      wirePasswordUi();
     }
   }
 

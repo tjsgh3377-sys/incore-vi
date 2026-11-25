@@ -162,6 +162,84 @@
 
   var GH_KEY = "incore_gh_token";
 
+  // ---------- 비밀번호 잠금 ----------
+  //
+  // 정적 사이트라 비밀번호를 검사할 서버가 없다. 그래서 GitHub 토큰을 비밀번호로
+  // 암호화해 저장소에 두고(admin/token.enc.json), 로그인 때 복호화해 쓴다.
+  //
+  // 주의: 이 암호문은 공개 저장소에 그대로 올라간다. 누구나 받아가 오프라인에서
+  //       비밀번호를 대입해볼 수 있다. 그래서
+  //         - PBKDF2 반복을 크게 잡아 1회 시도 비용을 ~1초로 올리고
+  //         - 짧은 비밀번호는 설정 단계에서 막는다 (MIN_PASSWORD)
+  //       그래도 마지막 방어선은 "긴 비밀번호"다.
+
+  var LOCK_PATH = "admin/token.enc.json";
+  var KDF_ITER = 2400000;     // 이 PC 기준 약 1초
+  var MIN_PASSWORD = 12;
+  var TOKEN_SLOT = 256;       // 암호문 길이로 토큰 종류가 드러나지 않도록 고정 길이
+
+  function randomBytes(n) {
+    var a = new Uint8Array(n);
+    crypto.getRandomValues(a);
+    return a;
+  }
+
+  function bytesToB64(bytes) {
+    var bin = "";
+    for (var i = 0; i < bytes.length; i += 8192) {
+      bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 8192));
+    }
+    return btoa(bin);
+  }
+
+  function b64ToBytes(b64) {
+    var bin = atob(String(b64).replace(/\s/g, ""));
+    var out = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+    return out;
+  }
+
+  function deriveKey(password, salt, iterations) {
+    var raw = new TextEncoder().encode(password);
+    return crypto.subtle.importKey("raw", raw, "PBKDF2", false, ["deriveKey"])
+      .then(function (base) {
+        return crypto.subtle.deriveKey(
+          { name: "PBKDF2", salt: salt, iterations: iterations, hash: "SHA-256" },
+          base, { name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]
+        );
+      });
+  }
+
+  function padToken(token) {
+    var b = new TextEncoder().encode(token);
+    if (b.length > TOKEN_SLOT - 2) throw new Error("토큰이 너무 깁니다.");
+    var out = randomBytes(TOKEN_SLOT);
+    out[0] = b.length >> 8;
+    out[1] = b.length & 255;
+    out.set(b, 2);
+    return out;
+  }
+
+  function unpadToken(bytes) {
+    var n = (bytes[0] << 8) | bytes[1];
+    if (n < 1 || n > TOKEN_SLOT - 2) throw new Error("bad padding");
+    return new TextDecoder().decode(bytes.subarray(2, 2 + n));
+  }
+
+  // 암호문은 Pages 보다 raw 쪽이 커밋 직후 바로 최신이라 먼저 시도한다
+  function fetchLock() {
+    var bust = "?_=" + Date.now();
+    var raw = "https://raw.githubusercontent.com/" + GH.owner + "/" + GH.repo +
+              "/" + GH.branch + "/" + LOCK_PATH + bust;
+    function parse(r) {
+      if (!r.ok) throw new Error("no lock");
+      return r.json();
+    }
+    return fetch(raw, { cache: "no-store" }).then(parse)
+      .catch(function () { return fetch("token.enc.json" + bust, { cache: "no-store" }).then(parse); })
+      .catch(function () { return null; });
+  }
+
   function ghToken() {
     try { return localStorage.getItem(GH_KEY) || sessionStorage.getItem(GH_KEY); }
     catch (e) { return null; }
@@ -259,6 +337,95 @@
 
     logout: function () {
       try { localStorage.removeItem(GH_KEY); sessionStorage.removeItem(GH_KEY); } catch (e) {}
+    },
+
+    // ---------- 비밀번호 로그인 ----------
+
+    minPassword: MIN_PASSWORD,
+
+    // 비밀번호가 설정돼 있는지 (로그인 화면이 어느 쪽을 먼저 보여줄지 결정)
+    hasPassword: function () {
+      return fetchLock().then(function (lock) { return !!(lock && lock.ct); });
+    },
+
+    loginWithPassword: function (password, remember) {
+      if (!password) return Promise.reject(new Error("비밀번호를 입력하세요."));
+      return fetchLock().then(function (lock) {
+        if (!lock || !lock.ct) {
+          throw new Error("비밀번호가 아직 설정되지 않았습니다.\nGitHub 토큰으로 로그인한 뒤 [비밀번호 설정]에서 만드세요.");
+        }
+        return deriveKey(password, b64ToBytes(lock.salt), lock.iterations || KDF_ITER)
+          .then(function (key) {
+            return crypto.subtle.decrypt(
+              { name: "AES-GCM", iv: b64ToBytes(lock.iv) }, key, b64ToBytes(lock.ct)
+            );
+          })
+          .then(function (buf) { return unpadToken(new Uint8Array(buf)); },
+                function () { throw new Error("비밀번호가 올바르지 않습니다."); });
+      }).then(function (token) {
+        // 꺼낸 토큰이 아직 살아 있는지까지 확인한다
+        return GitHubBackend.login(token, remember).catch(function (e) {
+          if (/토큰/.test(e.message)) {
+            throw new Error("비밀번호는 맞지만 저장된 토큰이 만료되었거나 권한을 잃었습니다.\n새 토큰으로 로그인한 뒤 비밀번호를 다시 설정하세요.");
+          }
+          throw e;
+        });
+      });
+    },
+
+    // 지금 로그인에 쓰고 있는 토큰을 비밀번호로 잠가 저장소에 올린다
+    setPassword: function (password) {
+      var self = this;
+      var token = ghToken();
+      if (!token) return Promise.reject(new Error("먼저 로그인하세요."));
+      if (!password || password.length < MIN_PASSWORD) {
+        return Promise.reject(new Error("비밀번호는 " + MIN_PASSWORD + "자 이상이어야 합니다."));
+      }
+
+      var salt = randomBytes(16);
+      var iv = randomBytes(12);
+      return deriveKey(password, salt, KDF_ITER).then(function (key) {
+        return crypto.subtle.encrypt({ name: "AES-GCM", iv: iv }, key, padToken(token));
+      }).then(function (ct) {
+        var payload = json({
+          _: "GitHub 토큰을 비밀번호로 암호화한 파일입니다. 이 파일만으로는 토큰을 알 수 없습니다.",
+          v: 1,
+          kdf: "PBKDF2-SHA256",
+          iterations: KDF_ITER,
+          cipher: "AES-GCM-256",
+          salt: bytesToB64(salt),
+          iv: bytesToB64(iv),
+          ct: bytesToB64(new Uint8Array(ct))
+        });
+        // 기존 파일이 있으면 교체해야 하므로 sha 를 먼저 구한다
+        return gh(repoPath("/contents/" + LOCK_PATH + "?ref=" + GH.branch))
+          .then(function (f) { return f.sha; }, function () { return null; })
+          .then(function (sha) {
+            var body = {
+              message: "관리자 비밀번호 설정 (" + stamp() + ")",
+              content: utf8ToB64(payload),
+              branch: GH.branch
+            };
+            if (sha) body.sha = sha;
+            return gh(repoPath("/contents/" + LOCK_PATH), { method: "PUT", body: JSON.stringify(body) });
+          });
+      }).then(function (res) {
+        // 이 커밋으로 ref 가 움직였다. 갱신하지 않으면 다음 저장이 충돌로 막힌다.
+        if (res && res.commit && res.commit.sha) self.baseSha = res.commit.sha;
+        return true;
+      });
+    },
+
+    // 사람이 외우지 않고 비밀번호 관리자에 넣을 용도의 강한 암호
+    suggestPassword: function () {
+      var abc = "abcdefghijkmnpqrstuvwxyz23456789";  // 헷갈리는 l,o,0,1 제외
+      var bytes = randomBytes(16);
+      var s = "";
+      for (var i = 0; i < 16; i++) {
+        if (i && i % 4 === 0) s += "-";
+        s += abc.charAt(bytes[i] % abc.length);
+      }
+      return s;
     },
 
     load: function () {
