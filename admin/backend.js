@@ -169,7 +169,10 @@
 
   function ghMessage(status, body) {
     var detail = (body && body.message) ? body.message : "";
-    if (status === 401) return "토큰이 올바르지 않거나 만료되었습니다. 다시 로그인하세요.";
+    if (status === 401) {
+      return "토큰이 올바르지 않거나 만료되었습니다.\n" +
+             "사이트 비밀번호가 아니라 GitHub에서 발급한 토큰인지 확인하세요.";
+    }
     if (status === 403) {
       if (/rate limit/i.test(detail)) return "GitHub 요청 한도를 넘었습니다. 잠시 후 다시 시도하세요.";
       return "권한이 없습니다. 토큰에 이 저장소의 Contents 쓰기 권한이 있는지 확인하세요.";
@@ -230,6 +233,14 @@
     login: function (tokenValue, remember) {
       var t = String(tokenValue || "").trim();
       if (!t) return Promise.reject(new Error("토큰을 입력하세요."));
+      // 로컬 관리자 비밀번호를 잘못 넣는 경우가 많아 형식을 먼저 걸러낸다.
+      // (fine-grained = github_pat_… , classic = ghp_… )
+      if (!/^(github_pat_|gh[pousr]_)/.test(t)) {
+        return Promise.reject(new Error(
+          "GitHub 토큰이 아닙니다. github_pat_… 또는 ghp_… 로 시작하는 값이어야 합니다.\n" +
+          "로컬 관리자 비밀번호와는 다릅니다. 아래 안내로 토큰을 발급하세요."
+        ));
+      }
       try {
         sessionStorage.setItem(GH_KEY, t);
         if (remember) localStorage.setItem(GH_KEY, t);
