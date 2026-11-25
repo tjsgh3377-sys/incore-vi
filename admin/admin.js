@@ -955,7 +955,6 @@
   }
 
   function wirePasswordUi() {
-    $("#toTokenLogin").addEventListener("click", function () { loginModeTouched = true; setLoginMode("token", true); });
     $("#toPwLogin").addEventListener("click", function () { loginModeTouched = true; setLoginMode("password", true); });
     $("#pwSetupBtn").addEventListener("click", openPwModal);
     $("#pwCancelBtn").addEventListener("click", closePwModal);
@@ -970,6 +969,14 @@
       $("#genPwOut").textContent = p + "  ← 비밀번호 관리자에 저장해 두세요";
       updateMeter();
     });
+
+    // 토큰이 만료됐을 때 되돌아가는 비상구. 화면에는 링크를 두지 않는다.
+    var forced = (/[?&]login=(token|password)/i.exec(location.search) || [])[1];
+    if (forced) {
+      loginModeTouched = true;
+      setLoginMode(forced.toLowerCase(), false);
+      return;
+    }
 
     // 지난 번 상태를 먼저 적용해 깜빡임을 줄이고, 실제 확인 결과로 바로잡는다
     var guess = "token";
