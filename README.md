@@ -71,6 +71,22 @@ cp admin.config.example.json admin.config.json
 
 `content_en.json`을 불러오지 못하면 안내 문구가 뜨고 베트남어만 편집합니다.
 
+### GitHub에 반영
+
+저장바의 **[GitHub에 반영]** 버튼이 저장 → 커밋 → 푸시를 한 번에 처리합니다.
+
+1. 먼저 `content.json` / `content_en.json`을 저장한다
+2. 바뀐 파일 목록을 확인 창으로 보여준다 (공개 사이트에 그대로 올라가므로 반드시 확인)
+3. 수락하면 커밋 후 `origin`의 현재 브랜치로 푸시한다
+4. 커밋 해시를 표시한다. GitHub Pages 반영까지 1~2분 걸린다
+
+- 커밋 대상은 `content.json`, `content_en.json`, `assets/` 뿐이다.
+  `admin.config.json`·`serve.ps1`·`admin.js` 등 다른 파일은 이 버튼으로 커밋되지 않는다.
+- 메모 칸에 적은 내용은 커밋 메시지 첫 줄이 된다. 비워두면 `관리자 페이지에서 콘텐츠 수정 (날짜 시각)`.
+- 바뀐 내용이 없으면 "반영할 변경이 없습니다"라고만 알리고 아무 것도 하지 않는다.
+- git 자격증명이 만료되면 푸시 단계에서 실패 메시지가 뜬다.
+  터미널에서 `git push`를 한 번 실행해 자격증명을 갱신하면 된다.
+
 ## 언어 전환
 
 상단 우측 `VI | EN` 버튼으로 전환한다.
@@ -86,8 +102,9 @@ cp admin.config.example.json admin.config.json
 
 > 영문 텍스트를 고칠 때는 `content_en.json`을 수정한다. 두 파일은 키 구조가 완전히 같아야 하며,
 > 한쪽에만 키를 추가하면 그 언어에서만 항목이 보인다.
-> 관리자 화면(`admin.html`)은 현재 `content.json`(베트남어)만 편집한다.
+> 관리자 화면(`admin.html`)에서 두 파일을 나란히 편집할 수 있다.
 
 ## 내용 수정
 
-`content.json`을 고치고 커밋하면 GitHub Pages에 자동 반영됩니다.
+`content.json` / `content_en.json`을 고치고 커밋하면 GitHub Pages에 자동 반영됩니다.
+관리자 페이지를 쓰면 [GitHub에 반영] 버튼이 커밋·푸시까지 대신 합니다.

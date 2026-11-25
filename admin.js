@@ -717,37 +717,109 @@
     }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); });
   }
 
-  function save() {
-    var msg = $("#saveMsg");
-    msg.className = "msg"; msg.textContent = "저장 중...";
-    $("#saveBtn").disabled = true;
-
+  // 저장 공통 로직 — [저장하기]와 [GitHub에 반영]이 함께 쓴다.
+  // 반환값: 영문까지 저장했으면 true, 베트남어만 저장했으면 false
+  function saveAll() {
     function failText(res) {
       if (res.j && res.j.error === "unauthorized") return "세션이 만료되었습니다. 다시 로그인하세요.";
       return "저장 실패: " + ((res.j && res.j.error) || "");
     }
-
     // 베트남어 → 영문 순으로 저장. 영문이 없으면 베트남어만 저장한다.
-    postJson("/api/save", content)
-      .then(function (res) {
-        if (!(res.ok && res.j.ok)) throw new Error(failText(res));
-        if (!contentEn) return null;
-        return postJson("/api/save-en", contentEn).then(function (resEn) {
-          if (!(resEn.ok && resEn.j.ok)) throw new Error("영문 " + failText(resEn));
-          return resEn;
-        });
+    return postJson("/api/save", content).then(function (res) {
+      if (!(res.ok && res.j.ok)) throw new Error(failText(res));
+      if (!contentEn) return false;
+      return postJson("/api/save-en", contentEn).then(function (resEn) {
+        if (!(resEn.ok && resEn.j.ok)) throw new Error("영문 " + failText(resEn));
+        return true;
+      });
+    });
+  }
+
+  function busy(on) {
+    $("#saveBtn").disabled = on;
+    $("#deployBtn").disabled = on;
+    $("#reloadBtn").disabled = on;
+  }
+
+  function save() {
+    var msg = $("#saveMsg");
+    msg.className = "msg"; msg.textContent = "저장 중...";
+    busy(true);
+    saveAll().then(function (withEn) {
+      busy(false);
+      msg.className = "msg ok";
+      msg.textContent = withEn
+        ? "저장되었습니다. (content.json + content_en.json)"
+        : "베트남어만 저장되었습니다. (영문 데이터 없음)";
+    }).catch(function (e) {
+      busy(false);
+      msg.className = "msg err";
+      msg.textContent = (e && e.message) ? e.message : "저장 실패 (서버 연결 오류)";
+    });
+  }
+
+  // ---------- GitHub에 반영 ----------
+  // 저장 → 변경 확인 → 사용자 확인 → git commit + push
+  function deploy() {
+    var msg = $("#saveMsg");
+    var STEP = { check: "확인", add: "스테이징", diff: "비교", commit: "커밋", push: "푸시" };
+    msg.className = "msg"; msg.textContent = "저장 중...";
+    busy(true);
+
+    saveAll()
+      .then(function () {
+        msg.textContent = "변경 내용 확인 중...";
+        return api("/api/deploy/status?_=" + Date.now())
+          .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); });
       })
-      .then(function (resEn) {
-        $("#saveBtn").disabled = false;
-        msg.className = "msg ok";
-        msg.textContent = resEn
-          ? "저장되었습니다. (content.json + content_en.json)"
-          : "베트남어만 저장되었습니다. (영문 데이터 없음)";
+      .then(function (res) {
+        if (!(res.ok && res.j.ok)) throw new Error("GitHub 확인 실패: " + ((res.j && res.j.error) || ""));
+        var st = res.j;
+        var files = st.changed || [];
+        if (!files.length && !st.ahead) {
+          msg.className = "msg warn";
+          msg.textContent = "이미 GitHub와 같은 내용입니다. 반영할 변경이 없습니다.";
+          return null;
+        }
+        var lines = files.length
+          ? files.map(function (f) { return "  · " + f; }).join("\n")
+          : "  · (커밋은 되어 있고 푸시만 남은 상태)";
+        var extra = st.ahead ? "\n\n푸시 대기 중인 커밋: " + st.ahead + "개" : "";
+        var go = confirm(
+          "아래 변경을 GitHub(" + st.branch + ")에 반영합니다.\n공개 사이트에 그대로 올라갑니다.\n\n" +
+          lines + extra + "\n\n계속할까요?"
+        );
+        if (!go) {
+          msg.className = "msg";
+          msg.textContent = "GitHub 반영을 취소했습니다. (저장은 완료)";
+          return null;
+        }
+        msg.className = "msg";
+        msg.textContent = "GitHub에 푸시 중... (최대 1~2분)";
+        var noteEl = $("#deployNote");
+        return postJson("/api/deploy", { note: (noteEl ? noteEl.value : "") });
+      })
+      .then(function (res) {
+        busy(false);
+        if (!res) return;
+        if (!(res.ok && res.j.ok)) {
+          var step = STEP[res.j && res.j.step] || "반영";
+          throw new Error(step + " 단계 실패: " + ((res.j && res.j.error) || ""));
+        }
+        if (res.j.nothing) {
+          msg.className = "msg warn";
+          msg.textContent = "반영할 변경이 없습니다.";
+        } else {
+          msg.className = "msg ok";
+          msg.textContent = "GitHub에 반영했습니다. (" + res.j.branch + " " + res.j.sha +
+            ") — 공개 사이트에 보이기까지 1~2분 걸립니다.";
+          if ($("#deployNote")) $("#deployNote").value = "";
+        }
       })
       .catch(function (e) {
-        $("#saveBtn").disabled = false;
+        busy(false);
         msg.className = "msg err";
-        msg.textContent = (e && e.message) ? e.message : "저장 실패 (서버 연결 오류)";
+        msg.textContent = (e && e.message) ? e.message : "GitHub 반영 실패 (서버 연결 오류)";
       });
   }
 
@@ -757,6 +829,7 @@
     $("#logoutBtn").addEventListener("click", logout);
     $("#saveBtn").addEventListener("click", save);
     $("#reloadBtn").addEventListener("click", function () { $("#saveMsg").textContent = ""; loadContent(); });
+    $("#deployBtn").addEventListener("click", deploy);
     if (token()) showApp();
   });
 })();

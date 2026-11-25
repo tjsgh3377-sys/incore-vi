@@ -1,5 +1,7 @@
-param([int]$Port = 8753)
+﻿param([int]$Port = 8753)
 $ErrorActionPreference = 'Stop'
+# 콘솔에 한글이 깨지지 않도록 (콘솔이 없는 환경에서는 무시)
+try { [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 } catch {}
 $root = $PSScriptRoot
 [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
 $listener = New-Object System.Net.HttpListener
@@ -115,6 +117,73 @@ function Invoke-Anthropic($key, $payload) {
   $text = $sr.ReadToEnd()
   $sr.Close(); $res.Close()
   return ($text | ConvertFrom-Json)
+}
+
+# ---------- GitHub 배포 ----------
+# 관리자 페이지에서 바뀔 수 있는 파일만 커밋한다. (admin.config.json / uploads 등은 .gitignore 처리)
+$script:DeployPaths = 'content.json content_en.json assets'
+
+# PowerShell 5.1에서 네이티브 exe의 stderr를 파이프로 받으면 ErrorRecord로 감싸져
+# 종료 코드 판단이 어긋난다. Process를 직접 띄워 출력/코드를 그대로 읽는다.
+function Invoke-Git {
+  param([string]$Arguments, [int]$TimeoutMs = 60000)
+  $psi = New-Object System.Diagnostics.ProcessStartInfo
+  $psi.FileName = 'git'
+  $psi.Arguments = $Arguments
+  $psi.WorkingDirectory = $root
+  $psi.UseShellExecute = $false
+  $psi.CreateNoWindow = $true
+  $psi.RedirectStandardOutput = $true
+  $psi.RedirectStandardError = $true
+  $psi.StandardOutputEncoding = [System.Text.Encoding]::UTF8
+  $psi.StandardErrorEncoding = [System.Text.Encoding]::UTF8
+  # 자격증명 프롬프트가 떠서 서버가 영구히 멈추는 것을 막는다
+  $psi.EnvironmentVariables['GIT_TERMINAL_PROMPT'] = '0'
+  $p = New-Object System.Diagnostics.Process
+  $p.StartInfo = $psi
+  try { $null = $p.Start() }
+  catch { return @{ code = -1; out = ''; err = 'git 실행 파일을 찾을 수 없습니다. Git for Windows를 설치하세요.' } }
+  $outTask = $p.StandardOutput.ReadToEndAsync()
+  $errTask = $p.StandardError.ReadToEndAsync()
+  if (-not $p.WaitForExit($TimeoutMs)) {
+    try { $p.Kill() } catch {}
+    return @{ code = -2; out = ''; err = ('git 명령이 ' + [int]($TimeoutMs / 1000) + '초 안에 끝나지 않아 중단했습니다. (git 자격증명 창이 떠 있는지 확인하세요)') }
+  }
+  $p.WaitForExit()
+  return @{ code = $p.ExitCode; out = ([string]$outTask.Result).Trim(); err = ([string]$errTask.Result).Trim() }
+}
+
+function Get-GitError($r, $fallback) {
+  if ($r.err) { return $r.err }
+  if ($r.out) { return $r.out }
+  return $fallback
+}
+
+function Get-DeployStatus {
+  $chk = Invoke-Git 'rev-parse --is-inside-work-tree' 15000
+  if ($chk.code -ne 0) {
+    return @{ ok = $false; error = (Get-GitError $chk 'git 저장소가 아닙니다.') }
+  }
+  $branch = (Invoke-Git 'rev-parse --abbrev-ref HEAD' 15000).out
+  $remote = (Invoke-Git 'config --get remote.origin.url' 15000).out
+  if (-not $remote) { return @{ ok = $false; error = 'origin 원격 저장소가 설정되지 않았습니다.' } }
+
+  $st = Invoke-Git ('status --porcelain -- ' + $script:DeployPaths) 30000
+  if ($st.code -ne 0) { return @{ ok = $false; error = (Get-GitError $st 'git status 실패') } }
+  $files = @()
+  foreach ($line in (($st.out -replace "`r", '') -split "`n")) {
+    # Invoke-Git 가 출력 전체를 Trim() 하므로 porcelain 의 선행 공백에 의존하면 안 된다
+    $m = [regex]::Match($line.Trim(), '^\S{1,2}\s+(.+)$')
+    if (-not $m.Success) { continue }
+    $f = $m.Groups[1].Value.Trim().Trim('"')
+    if ($f -match '->') { $f = ($f -split '->')[-1].Trim().Trim('"') }
+    if ($f) { $files += $f }
+  }
+  $ahead = 0
+  $rl = Invoke-Git 'rev-list --count @{u}..HEAD' 15000
+  if ($rl.code -eq 0) { [int]::TryParse($rl.out, [ref]$ahead) | Out-Null }
+
+  return @{ ok = $true; branch = $branch; remote = $remote; changed = $files; ahead = $ahead }
 }
 
 while ($listener.IsListening) {
@@ -317,6 +386,66 @@ $slotText
           [System.IO.File]::WriteAllText((Join-Path $distDir 'content_en.js'), ("window.__CONTENT_EN__ = " + $body + ";`r`n"), $utf8)
         }
         Send-Json $resp @{ ok = $true }
+        continue
+      }
+
+      # 반영 가능 여부 + 아직 푸시되지 않은 변경 목록
+      if ($path -eq '/api/deploy/status' -and $method -eq 'GET') {
+        Send-Json $resp (Get-DeployStatus)
+        continue
+      }
+
+      # content.json / content_en.json / assets 를 커밋 후 origin 에 푸시
+      if ($path -eq '/api/deploy' -and $method -eq 'POST') {
+        $note = ''
+        try { $note = [string](([System.Text.Encoding]::UTF8.GetString((Read-BodyBytes $req)) | ConvertFrom-Json).note) } catch {}
+
+        $stat = Get-DeployStatus
+        if (-not $stat.ok) { Send-Json $resp @{ ok = $false; step = 'check'; error = $stat.error } 500; continue }
+
+        $add = Invoke-Git ('add -A -- ' + $script:DeployPaths) 60000
+        if ($add.code -ne 0) { Send-Json $resp @{ ok = $false; step = 'add'; error = (Get-GitError $add 'git add 실패') } 500; continue }
+
+        $diff = Invoke-Git ('diff --cached --quiet -- ' + $script:DeployPaths) 30000
+        if ($diff.code -gt 1) { Send-Json $resp @{ ok = $false; step = 'diff'; error = (Get-GitError $diff 'git diff 실패') } 500; continue }
+        $hasStaged = ($diff.code -eq 1)
+
+        if (-not $hasStaged -and $stat.ahead -eq 0) {
+          Send-Json $resp @{ ok = $true; nothing = $true; branch = $stat.branch }
+          continue
+        }
+
+        if ($hasStaged) {
+          # 따옴표·줄바꿈 때문에 명령줄이 깨지지 않도록 메시지는 파일로 전달한다
+          $msg = '관리자 페이지에서 콘텐츠 수정 (' + (Get-Date -Format 'yyyy-MM-dd HH:mm') + ')'
+          if (-not [string]::IsNullOrWhiteSpace($note)) {
+            $clean = ($note -replace '[\r\n\t]+', ' ').Trim()
+            if ($clean.Length -gt 120) { $clean = $clean.Substring(0, 120) }
+            $msg = $clean + "`n`n" + $msg
+          }
+          $msgFile = Join-Path $env:TEMP ('incore-commit-' + ([guid]::NewGuid().ToString('N')) + '.txt')
+          [System.IO.File]::WriteAllText($msgFile, $msg, (New-Object System.Text.UTF8Encoding($false)))
+          $commit = Invoke-Git ('commit -F "' + $msgFile + '"') 60000
+          Remove-Item $msgFile -Force -ErrorAction SilentlyContinue
+          if ($commit.code -ne 0) { Send-Json $resp @{ ok = $false; step = 'commit'; error = (Get-GitError $commit 'git commit 실패') } 500; continue }
+        }
+
+        $push = Invoke-Git 'push origin HEAD' 180000
+        if ($push.code -ne 0) {
+          Send-Json $resp @{ ok = $false; step = 'push'; error = (Get-GitError $push 'git push 실패'); committed = $hasStaged } 500
+          continue
+        }
+
+        $sha = (Invoke-Git 'rev-parse --short HEAD' 15000).out
+        Write-Host ("[deploy] " + $sha + " → " + $stat.remote) -ForegroundColor Green
+        Send-Json $resp @{
+          ok        = $true
+          nothing   = $false
+          committed = $hasStaged
+          files     = @($stat.changed)
+          sha       = $sha
+          branch    = $stat.branch
+        }
         continue
       }
 
