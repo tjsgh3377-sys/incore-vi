@@ -1,0 +1,10 @@
+{
+  "_": "GitHub 토큰을 비밀번호로 암호화한 파일입니다. 이 파일만으로는 토큰을 알 수 없습니다.",
+  "v": 1,
+  "kdf": "PBKDF2-SHA256",
+  "iterations": 2400000,
+  "cipher": "AES-GCM-256",
+  "salt": "hMe3qfmyNrccvW/zID7Nag==",
+  "iv": "2R0hQujMVEz3ZJDv",
+  "ct": "0AZ8CDOVNb3ylgio1g3VEA2YoPtt0azcfacUTQFSxCXuBVjj6V+abyhRUCQCNe+owQ+W6KyPeowak5KsPh2AewbfgYa58YtAcvTcon8xYnJkZpbcJOp9+M5F1LXcVTiTfITv2fFPNcQEFyk6CL0kZRPEZYCFQVvS6LjBizN4n2wcCd+GMNY4rMps+GZDOeSfhlgUoPSUpdSnfUD+S8gp4FGudniUwwd4jy/32f7+5gGE5EacuJnSCisTFnV9KVTOA7/xIeEXy3pCdFF/l/Q35Civ14GjQSVgCDecMFb6okGrS3QZdp6h1xRQgA8QxUUvJel3d5CmsB2Gu1som4N41LgtaOCPbVJSq8WNFNNLzAw="
+}
