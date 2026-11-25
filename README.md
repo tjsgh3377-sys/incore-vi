@@ -29,14 +29,43 @@ python -m http.server 8753
 > `file://`로 직접 열면 동작하지 않습니다. `app.js`가 `content.json`을
 > XHR로 읽기 때문에 반드시 HTTP로 띄워야 합니다.
 
-## 관리자 페이지 (로컬 전용)
+## 관리자 페이지
 
-`admin.html`은 `serve.ps1`이 제공하는 로컬 API(`/api/login`·`/api/content`·`/api/save`·
-`/api/upload`)에 의존합니다. **GitHub Pages에는 백엔드가 없으므로 관리자는 로컬에서만 동작합니다.**
+관리자는 `/admin/` 한 곳입니다. 접속한 주소에 따라 저장 방식이 자동으로 바뀝니다.
 
-그래서 관리자 파일은 저장소에만 두고 공개 사이트에는 게시하지 않습니다
-(`_config.yml` 의 `exclude` 목록). 반드시 아래 **localhost 주소**로 접속하세요 —
-Pages 주소나 `file://` 로 열면 "서버에 연결할 수 없습니다" 오류가 납니다.
+| 접속 주소 | 모드 | 로그인 | 저장하면 |
+| --- | --- | --- | --- |
+| <http://localhost:8753/admin/> | 로컬 서버 | 비밀번호 | 파일에 바로 기록 (빠름). 발행은 [GitHub에 반영] 버튼으로 따로 |
+| `(공개주소)/admin/` | GitHub 직접 편집 | GitHub 토큰 | 저장소에 바로 커밋 → 사이트 반영 |
+
+판정은 주소로 합니다(localhost 여부). LAN IP로 로컬 서버를 열었을 때처럼 어긋나면
+주소 끝에 `?backend=local` 또는 `?backend=github` 를 붙여 강제할 수 있습니다.
+
+관련 파일은 `admin/index.html`(화면), `admin/admin.js`(입력 폼),
+`admin/backend.js`(저장 방식 두 가지)입니다.
+
+### 웹에서 쓰기 — GitHub 토큰
+
+공개 주소의 `/admin/`은 서버가 없으므로 **브라우저가 GitHub API로 직접 커밋**합니다.
+비밀번호 대신 GitHub 토큰이 열쇠입니다.
+
+1. <https://github.com/settings/personal-access-tokens/new> 에서 Fine-grained token 발급
+2. Repository access → **이 저장소만** 선택
+3. Permissions → Repository permissions → **Contents: Read and write**
+4. 만료일을 정해두고, 만료되면 새로 발급해 다시 로그인
+
+- 토큰은 입력한 브라우저에만 저장되고(기억하기 체크 시 `localStorage`) 다른 곳으로 보내지 않습니다.
+- 쓰기 권한이 없는 토큰은 로그인 단계에서 걸러집니다.
+- 저장 = 커밋입니다. 바뀐 파일 목록을 확인창으로 보여준 뒤 커밋하며,
+  본문·영문·이미지를 **하나의 커밋**으로 묶습니다.
+- 불러온 뒤 저장소가 바뀌었으면(다른 곳에서 먼저 수정) 덮어쓰지 않고 막습니다.
+  [되돌리기]로 최신 내용을 받은 뒤 다시 저장하세요.
+- 저장소 주소가 바뀌면 `admin/backend.js` 맨 위의 `GH` 값만 고치면 됩니다.
+
+> 공개 주소의 관리자 화면은 누구나 열 수 있지만, **쓰기 권한이 있는 토큰이 없으면
+> 아무것도 저장할 수 없습니다.** 저장소가 공개라 내용 자체는 이미 공개 상태입니다.
+
+### 로컬에서 쓰기 — serve.ps1
 
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File serve.ps1
@@ -45,9 +74,9 @@ powershell -NoProfile -ExecutionPolicy Bypass -File serve.ps1
 | 주소 | 용도 |
 | --- | --- |
 | <http://localhost:8753/> | 사이트 |
-| <http://localhost:8753/admin.html> | 관리자 |
+| <http://localhost:8753/admin/> | 관리자 |
 
-### 비밀번호 설정
+#### 비밀번호 설정
 
 `admin.config.example.json`을 복사해 `admin.config.json`을 만들고 비밀번호를 바꿉니다.
 **`admin.config.json`은 `.gitignore`에 등록되어 있어 저장소에 올라가지 않습니다.**
@@ -59,7 +88,7 @@ cp admin.config.example.json admin.config.json
 설정 파일이 없으면 `change-me`가 기본값으로 쓰입니다. 공개 저장소이므로 실제 비밀번호를
 코드에 적지 마세요.
 
-### 편집 범위
+### 편집 범위 (두 모드 공통)
 
 좌측 8개 탭(홈·회사소개·제품소개·사업영역·기술력·인증/오시는 길·문의/CTA·커뮤니티)에서
 텍스트·이미지를 수정합니다. **베트남어(VI)와 영문(EN)을 나란히 편집**하며,
@@ -71,7 +100,7 @@ cp admin.config.example.json admin.config.json
 
 `content_en.json`을 불러오지 못하면 안내 문구가 뜨고 베트남어만 편집합니다.
 
-### GitHub에 반영
+### GitHub에 반영 (로컬 모드 전용)
 
 저장바의 **[GitHub에 반영]** 버튼이 저장 → 커밋 → 푸시를 한 번에 처리합니다.
 
@@ -81,7 +110,7 @@ cp admin.config.example.json admin.config.json
 4. 커밋 해시를 표시한다. GitHub Pages 반영까지 1~2분 걸린다
 
 - 커밋 대상은 `content.json`, `content_en.json`, `assets/` 뿐이다.
-  `admin.config.json`·`serve.ps1`·`admin.js` 등 다른 파일은 이 버튼으로 커밋되지 않는다.
+  `admin.config.json`·`serve.ps1` 등 다른 파일은 이 버튼으로 커밋되지 않는다.
 - 메모 칸에 적은 내용은 커밋 메시지 첫 줄이 된다. 비워두면 `관리자 페이지에서 콘텐츠 수정 (날짜 시각)`.
 - 바뀐 내용이 없으면 "반영할 변경이 없습니다"라고만 알리고 아무 것도 하지 않는다.
 - git 자격증명이 만료되면 푸시 단계에서 실패 메시지가 뜬다.
@@ -102,7 +131,7 @@ cp admin.config.example.json admin.config.json
 
 > 영문 텍스트를 고칠 때는 `content_en.json`을 수정한다. 두 파일은 키 구조가 완전히 같아야 하며,
 > 한쪽에만 키를 추가하면 그 언어에서만 항목이 보인다.
-> 관리자 화면(`admin.html`)에서 두 파일을 나란히 편집할 수 있다.
+> 관리자 화면(`/admin/`)에서 두 파일을 나란히 편집할 수 있다.
 
 ## 내용 수정
 

@@ -8,7 +8,7 @@ $listener = New-Object System.Net.HttpListener
 $listener.Prefixes.Add("http://localhost:$Port/")
 $listener.Start()
 Write-Host "INCORE(VI) 사이트: http://localhost:$Port/"
-Write-Host "관리자 페이지:    http://localhost:$Port/admin.html"
+Write-Host "관리자 페이지:    http://localhost:$Port/admin/"
 
 $mime = @{
   '.html'='text/html; charset=utf-8'; '.htm'='text/html; charset=utf-8';

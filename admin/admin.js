@@ -1,9 +1,9 @@
 (function () {
   "use strict";
 
-  var TOKEN_KEY = "jstech_admin_token";
   var content = null;    // 베트남어 content.json
   var contentEn = null;  // 영문 content_en.json (불러오기 실패 시 null → 영문 칸 숨김)
+  var B = window.Backend;  // backend.js — 로컬(serve.ps1) 또는 GitHub API
 
   function $(sel, root) { return (root || document).querySelector(sel); }
   function el(tag, attrs, html) {
@@ -12,32 +12,33 @@
     if (html != null) e.innerHTML = html;
     return e;
   }
-  function token() { return sessionStorage.getItem(TOKEN_KEY); }
   function esc(s) { return (s == null ? "" : String(s)).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
 
-  function api(path, opts) {
-    opts = opts || {};
-    opts.headers = opts.headers || {};
-    if (token()) opts.headers["X-Admin-Token"] = token();
-    return fetch(path, opts);
+  // 관리자 화면이 /admin/ 에 있으므로 content 의 사이트 기준 상대경로 앞에 ../ 를 붙인다
+  function siteUrl(p) {
+    p = String(p || "");
+    if (/^(https?:)?\/\//.test(p) || p.charAt(0) === "/") return p;
+    return "../" + p;
   }
+  function bust(u) { return u + (u.indexOf("?") === -1 ? "?" : "&") + "_=" + Date.now(); }
 
   // ---------- login ----------
   function doLogin() {
-    var pw = $("#pw").value;
-    $("#loginErr").textContent = "";
-    fetch("/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password: pw })
-    }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
-      .then(function (res) {
-        if (res.ok && res.j.ok) { sessionStorage.setItem(TOKEN_KEY, pw); showApp(); }
-        else { $("#loginErr").textContent = "비밀번호가 올바르지 않습니다."; }
-      }).catch(function () { $("#loginErr").textContent = "서버에 연결할 수 없습니다. serve.ps1 로 실행했는지 확인하세요."; });
+    var err = $("#loginErr");
+    var btn = $("#loginBtn");
+    var remember = $("#remember") ? $("#remember").checked : false;
+    err.textContent = "";
+    btn.disabled = true;
+    B.login($("#pw").value, remember).then(function () {
+      btn.disabled = false;
+      showApp();
+    }).catch(function (e) {
+      btn.disabled = false;
+      err.textContent = (e && e.message) ? e.message : "로그인에 실패했습니다.";
+    });
   }
 
-  function logout() { sessionStorage.removeItem(TOKEN_KEY); location.reload(); }
+  function logout() { B.logout(); location.reload(); }
 
   function showApp() {
     $("#login").classList.add("hidden");
@@ -46,19 +47,15 @@
   }
 
   function loadContent() {
-    var t = Date.now();
-    var vi = fetch("/api/content?_=" + t).then(function (r) { return r.json(); });
-    // 영문은 없거나 서버가 실패해도 베트남어 편집은 계속 가능해야 한다
-    var en = fetch("/api/content?lang=en&_=" + t)
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .catch(function () { return null; });
-
-    Promise.all([vi, en]).then(function (res) {
+    $("#form").innerHTML = "<div class='card'>불러오는 중...</div>";
+    B.load().then(function (res) {
       content = res[0];
       contentEn = res[1];
       buildForm();
-    }).catch(function () {
-      $("#form").innerHTML = "<div class='card'>content.json을 불러오지 못했습니다.</div>";
+    }).catch(function (e) {
+      var why = (e && e.message) ? e.message : "알 수 없는 오류";
+      $("#form").innerHTML = "<div class='card'>내용을 불러오지 못했습니다." +
+        "<div class='hint' style='margin-top:8px'>" + esc(why) + "</div></div>";
     });
   }
 
@@ -79,7 +76,7 @@
     var wrap = el("div");
     wrap.appendChild(el("label", null, esc(label)));
     var row = el("div", { "class": "img-field" });
-    var img = el("img", { "class": "thumb", src: getter() + "?_=" + Date.now() });
+    var img = el("img", { "class": "thumb", src: bust(siteUrl(getter())) });
     var btn = el("span", { "class": "file-btn" });
     var b = el("button", { "class": "ghost", type: "button", style: "border-radius:8px;padding:9px 14px;cursor:pointer;" }, "이미지 변경");
     var input = el("input", { type: "file", accept: "image/*" });
@@ -91,17 +88,13 @@
       if (!file) return;
       status.textContent = "업로드 중...";
       var name = (Date.now()) + "_" + file.name;
-      api("/api/upload?folder=" + folder + "&name=" + encodeURIComponent(name), {
-        method: "POST",
-        headers: { "Content-Type": "application/octet-stream" },
-        body: file
-      }).then(function (r) { return r.json(); }).then(function (j) {
-        if (j.ok) {
-          setter(j.path);
-          img.src = j.path + "?_=" + Date.now();
-          status.textContent = "변경됨 (저장하기를 눌러 반영)";
-        } else { status.textContent = "업로드 실패: " + (j.error || ""); }
-      }).catch(function () { status.textContent = "업로드 실패"; });
+      B.upload(file, folder, name).then(function (j) {
+        setter(j.path);
+        img.src = j.previewUrl || bust(siteUrl(j.path));
+        status.textContent = "변경됨 (저장하기를 눌러 반영)";
+      }).catch(function (e) {
+        status.textContent = "업로드 실패: " + ((e && e.message) || "");
+      });
     });
 
     row.appendChild(img); row.appendChild(btn); row.appendChild(status);
@@ -116,7 +109,7 @@
     var wrap = el("div");
     wrap.appendChild(el("label", null, esc(label)));
     var row = el("div", { "class": "img-field" });
-    var cur = el("a", { href: getCurrent() + "?_=" + Date.now(), target: "_blank", style: "font-size:13px;color:var(--mint-dark);" }, "현재 파일 보기 ↗");
+    var cur = el("a", { href: bust(siteUrl(getCurrent())), target: "_blank", style: "font-size:13px;color:var(--mint-dark);" }, "현재 파일 보기 ↗");
     var btn = el("span", { "class": "file-btn" });
     var b = el("button", { "class": "ghost", type: "button", style: "border-radius:8px;padding:9px 14px;cursor:pointer;" }, "파일 선택");
     var input = el("input", { type: "file" });
@@ -129,17 +122,15 @@
       if (!file) return;
       status.textContent = "업로드 중...";
       var name = opts.fixedName || (Date.now() + "_" + file.name);
-      api("/api/upload?folder=" + (opts.folder || "images") + "&name=" + encodeURIComponent(name), {
-        method: "POST",
-        headers: { "Content-Type": "application/octet-stream" },
-        body: file
-      }).then(function (r) { return r.json(); }).then(function (j) {
-        if (j.ok) {
-          if (opts.onUploaded) opts.onUploaded(j.path);
-          cur.href = j.path + "?_=" + Date.now();
-          status.textContent = opts.fixedName ? "교체 완료 — 사이트에 즉시 반영됩니다." : "변경됨 (저장하기를 눌러 반영)";
-        } else { status.textContent = "업로드 실패: " + (j.error || ""); }
-      }).catch(function () { status.textContent = "업로드 실패"; });
+      B.upload(file, opts.folder || "images", name).then(function (j) {
+        if (opts.onUploaded) opts.onUploaded(j.path);
+        cur.href = j.previewUrl || bust(siteUrl(j.path));
+        status.textContent = (opts.fixedName && B.instantUpload)
+          ? "교체 완료 — 사이트에 즉시 반영됩니다."
+          : "변경됨 (저장하기를 눌러 반영)";
+      }).catch(function (e) {
+        status.textContent = "업로드 실패: " + ((e && e.message) || "");
+      });
     });
 
     row.appendChild(cur); row.appendChild(btn); row.appendChild(status);
@@ -708,68 +699,94 @@
     if (navItems.length) activateSection(navItems[0].id);
   }
 
-  // ---------- save ----------
+  // ---------- 저장 ----------
+  function busy(on) {
+    $("#saveBtn").disabled = on;
+    $("#reloadBtn").disabled = on;
+    if ($("#deployBtn")) $("#deployBtn").disabled = on;
+  }
+
+  function noteValue() { return $("#deployNote") ? $("#deployNote").value : ""; }
+  function clearNote() { if ($("#deployNote")) $("#deployNote").value = ""; }
+
+  function fail(msg, e, fallback) {
+    busy(false);
+    msg.className = "msg err";
+    msg.textContent = (e && e.message) ? e.message : fallback;
+  }
+
+  function save() {
+    if (B.mode === "github") return saveToGithub();
+
+    var msg = $("#saveMsg");
+    msg.className = "msg"; msg.textContent = "저장 중...";
+    busy(true);
+    B.save(content, contentEn).then(function (r) {
+      busy(false);
+      msg.className = "msg ok";
+      msg.textContent = (r.files.length > 1)
+        ? "저장되었습니다. (content.json + content_en.json)"
+        : "베트남어만 저장되었습니다. (영문 데이터 없음)";
+    }).catch(function (e) { fail(msg, e, "저장 실패 (서버 연결 오류)"); });
+  }
+
+  // 웹(GitHub Pages)에서는 저장이 곧 공개 발행이므로 목록을 보여주고 확인을 받는다
+  function saveToGithub() {
+    var msg = $("#saveMsg");
+    var changed = B.changedFiles(content, contentEn);
+    if (!changed.length) {
+      msg.className = "msg warn";
+      msg.textContent = "바뀐 내용이 없습니다.";
+      return;
+    }
+    var go = confirm(
+      "아래 변경을 GitHub(" + B.repoInfo.repo + " / " + B.repoInfo.branch + ")에 커밋합니다.\n" +
+      "공개 사이트에 그대로 올라갑니다.\n\n" +
+      changed.map(function (f) { return "  · " + f; }).join("\n") +
+      "\n\n계속할까요?"
+    );
+    if (!go) {
+      msg.className = "msg";
+      msg.textContent = "저장을 취소했습니다.";
+      return;
+    }
+
+    msg.className = "msg"; msg.textContent = "GitHub에 커밋 중...";
+    busy(true);
+    B.save(content, contentEn, noteValue()).then(function (r) {
+      busy(false);
+      if (r.nothing) {
+        msg.className = "msg warn";
+        msg.textContent = "바뀐 내용이 없습니다.";
+        return;
+      }
+      clearNote();
+      msg.className = "msg ok";
+      msg.textContent = "커밋했습니다. (" + r.sha + ", 파일 " + r.files.length + "개)" +
+        " — 공개 사이트에 보이기까지 1~2분 걸립니다.";
+    }).catch(function (e) { fail(msg, e, "커밋 실패"); });
+  }
+
+  // ---------- GitHub에 반영 (로컬 전용) ----------
+  // 로컬에서는 저장과 발행이 분리돼 있다. 저장 → git commit → push 를 한 번에 처리한다.
   function postJson(path, obj) {
-    return api(path, {
+    return B.api(path, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(obj, null, 2)
     }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); });
   }
 
-  // 저장 공통 로직 — [저장하기]와 [GitHub에 반영]이 함께 쓴다.
-  // 반환값: 영문까지 저장했으면 true, 베트남어만 저장했으면 false
-  function saveAll() {
-    function failText(res) {
-      if (res.j && res.j.error === "unauthorized") return "세션이 만료되었습니다. 다시 로그인하세요.";
-      return "저장 실패: " + ((res.j && res.j.error) || "");
-    }
-    // 베트남어 → 영문 순으로 저장. 영문이 없으면 베트남어만 저장한다.
-    return postJson("/api/save", content).then(function (res) {
-      if (!(res.ok && res.j.ok)) throw new Error(failText(res));
-      if (!contentEn) return false;
-      return postJson("/api/save-en", contentEn).then(function (resEn) {
-        if (!(resEn.ok && resEn.j.ok)) throw new Error("영문 " + failText(resEn));
-        return true;
-      });
-    });
-  }
-
-  function busy(on) {
-    $("#saveBtn").disabled = on;
-    $("#deployBtn").disabled = on;
-    $("#reloadBtn").disabled = on;
-  }
-
-  function save() {
-    var msg = $("#saveMsg");
-    msg.className = "msg"; msg.textContent = "저장 중...";
-    busy(true);
-    saveAll().then(function (withEn) {
-      busy(false);
-      msg.className = "msg ok";
-      msg.textContent = withEn
-        ? "저장되었습니다. (content.json + content_en.json)"
-        : "베트남어만 저장되었습니다. (영문 데이터 없음)";
-    }).catch(function (e) {
-      busy(false);
-      msg.className = "msg err";
-      msg.textContent = (e && e.message) ? e.message : "저장 실패 (서버 연결 오류)";
-    });
-  }
-
-  // ---------- GitHub에 반영 ----------
-  // 저장 → 변경 확인 → 사용자 확인 → git commit + push
   function deploy() {
     var msg = $("#saveMsg");
     var STEP = { check: "확인", add: "스테이징", diff: "비교", commit: "커밋", push: "푸시" };
     msg.className = "msg"; msg.textContent = "저장 중...";
     busy(true);
 
-    saveAll()
+    B.save(content, contentEn)
       .then(function () {
         msg.textContent = "변경 내용 확인 중...";
-        return api("/api/deploy/status?_=" + Date.now())
+        return B.api("/api/deploy/status?_=" + Date.now())
           .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); });
       })
       .then(function (res) {
@@ -796,8 +813,7 @@
         }
         msg.className = "msg";
         msg.textContent = "GitHub에 푸시 중... (최대 1~2분)";
-        var noteEl = $("#deployNote");
-        return postJson("/api/deploy", { note: (noteEl ? noteEl.value : "") });
+        return postJson("/api/deploy", { note: noteValue() });
       })
       .then(function (res) {
         busy(false);
@@ -813,23 +829,33 @@
           msg.className = "msg ok";
           msg.textContent = "GitHub에 반영했습니다. (" + res.j.branch + " " + res.j.sha +
             ") — 공개 사이트에 보이기까지 1~2분 걸립니다.";
-          if ($("#deployNote")) $("#deployNote").value = "";
+          clearNote();
         }
       })
-      .catch(function (e) {
-        busy(false);
-        msg.className = "msg err";
-        msg.textContent = (e && e.message) ? e.message : "GitHub 반영 실패 (서버 연결 오류)";
-      });
+      .catch(function (e) { fail(msg, e, "GitHub 반영 실패 (서버 연결 오류)"); });
+  }
+
+  // ---------- 모드별 화면 ----------
+  function setupMode() {
+    var isGh = (B.mode === "github");
+    document.documentElement.setAttribute("data-mode", B.mode);
+    if ($("#modeBadge")) $("#modeBadge").textContent = B.label;
+    // 웹에서는 저장이 곧 커밋이므로 별도 반영 버튼이 필요 없다
+    if (isGh && $("#deployBtn")) $("#deployBtn").parentNode.removeChild($("#deployBtn"));
+    if (isGh) {
+      $("#saveBtn").textContent = "저장하고 발행";
+      $("#deployNote").setAttribute("placeholder", "수정 메모 (커밋 메시지)");
+    }
   }
 
   document.addEventListener("DOMContentLoaded", function () {
+    setupMode();
     $("#loginBtn").addEventListener("click", doLogin);
     $("#pw").addEventListener("keydown", function (e) { if (e.key === "Enter") doLogin(); });
     $("#logoutBtn").addEventListener("click", logout);
     $("#saveBtn").addEventListener("click", save);
     $("#reloadBtn").addEventListener("click", function () { $("#saveMsg").textContent = ""; loadContent(); });
-    $("#deployBtn").addEventListener("click", deploy);
-    if (token()) showApp();
+    if ($("#deployBtn")) $("#deployBtn").addEventListener("click", deploy);
+    if (B.isLoggedIn()) showApp();
   });
 })();
