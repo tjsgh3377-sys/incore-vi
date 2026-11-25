@@ -431,6 +431,12 @@ $slotText
         }
 
         $push = Invoke-Git 'push origin HEAD' 180000
+        # GitHub 가 thin pack 을 받다가 간헐적으로 500(Internal Server Error)을 낸다.
+        # 같은 푸시를 --no-thin 으로 한 번 더 시도하면 통과한다.
+        if ($push.code -ne 0) {
+          Write-Host '[deploy] push 재시도 (--no-thin)' -ForegroundColor Yellow
+          $push = Invoke-Git 'push --no-thin origin HEAD' 180000
+        }
         if ($push.code -ne 0) {
           Send-Json $resp @{ ok = $false; step = 'push'; error = (Get-GitError $push 'git push 실패'); committed = $hasStaged } 500
           continue
