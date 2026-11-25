@@ -264,9 +264,13 @@
           readFile("content_en.json").catch(function () { return null; })
         ]);
       }).then(function (texts) {
-        self.orig.vi = texts[0];
-        self.orig.en = texts[1];
-        return [JSON.parse(texts[0]), texts[1] ? JSON.parse(texts[1]) : null];
+        var vi = JSON.parse(texts[0]);
+        var en = texts[1] ? JSON.parse(texts[1]) : null;
+        // 저장소 원본의 들여쓰기·끝 줄바꿈이 달라도 "수정됨"으로 오인하지 않도록
+        // 내보낼 때와 같은 형식으로 정규화해 보관한다.
+        self.orig.vi = json(vi);
+        self.orig.en = en ? json(en) : null;
+        return [vi, en];
       });
     },
 
